@@ -6,7 +6,7 @@ import pathleft from "../assets/pathleft.svg";
 
 const Hero = () => {
   return (
-    <div className="relative bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5  md:pt-[72px] md:pb-[120px] flex justify-center items-center">
+    <div className="relative overflow-x-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5  md:pt-[72px] md:pb-[120px] flex justify-center items-center">
       <div className="max-w-[1501px] md:px-5 flex flex-col md:flex-row justify-between items-center">
         <div className="block md:hidden mb-[61px]">
           <img src={heroMini} alt="Hero" />
@@ -22,10 +22,18 @@ const Hero = () => {
             and that's exactly what we're committed to creating.
           </p>
           <div className="flex items-center md:space-x-4">
-            <Button variant="secondary" size="md" className="hidden md:block md:w-[211.5px]">
+            <Button
+              variant="secondary"
+              size="md"
+              className="hidden md:block md:w-[211.5px]"
+            >
               Discover our mission
             </Button>
-            <Button variant="primary" size="md" className="w-full md:w-[211.5px]">
+            <Button
+              variant="primary"
+              size="md"
+              className="w-full md:w-[211.5px]"
+            >
               Get involved
             </Button>
           </div>

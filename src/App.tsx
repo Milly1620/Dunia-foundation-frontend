@@ -9,7 +9,7 @@ import FooterSection from "./components/FooterSection";
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#D8EEE7] md:bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#D8EEE7] md:bg-white">
       <Navbar />
       <Hero />
       <StatisticsSection />

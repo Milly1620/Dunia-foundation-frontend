@@ -7,7 +7,7 @@ const GetInTouchSection: React.FC = () => {
   
 
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8 sticky z-70">
+    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8 md:sticky z-70">
       <div className="max-w-[1240px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">

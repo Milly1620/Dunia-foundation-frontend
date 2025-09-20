@@ -2,10 +2,8 @@ import React from "react";
 import PillarCard from "./PillarCard";
 
 const SevenPillarsSection: React.FC = () => {
-  
-
   return (
-    <section className="relative z-70 md:bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] py-10 md:py-[124px] px-4 sm:px-6 lg:px-8">
+    <section className="relative md:z-70 md:bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] py-10 md:py-[124px] px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1520px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">

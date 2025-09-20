@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const CallToActionSection: React.FC = () => {
   return (
-    <section className="bg-gradient-to-b from-[#D8EEE7] to-[#F2F8F6] py-10 md:py-[184px] px-4 sm:px-6 lg:px-8 sticky z-80">
+    <section className="bg-gradient-to-b from-[#D8EEE7] to-[#F2F8F6] py-10 md:py-[184px] px-4 sm:px-6 lg:px-8 md:sticky z-80">
       <div className="max-w-[772.37px] mx-auto flex flex-col md:items-center md:justify-center">
         {/* Heading */}
         <h2 className="text-[24px] md:text-[40px] text-main-black mb-2 poppins-semibold">
@@ -18,9 +18,13 @@ const CallToActionSection: React.FC = () => {
         </p>
 
         {/* CTA Button */}
-          <Button variant="primary" size="md" className="w-full md:w-[432px] mt-6">
-            Donate today
-          </Button>
+        <Button
+          variant="primary"
+          size="md"
+          className="w-full md:w-[432px] mt-6"
+        >
+          Donate today
+        </Button>
       </div>
     </section>
   );

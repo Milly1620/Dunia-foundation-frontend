@@ -1,55 +1,30 @@
 import React from "react";
 import Button from "./Button";
-import graphics from "../assets/graphics.svg";
+import graphics from "../assets/Path.svg";
 import love from "../assets/love.svg";
 import giraffe from "../assets/girrafe.svg";
 
 const GraphicsLayeredSection: React.FC = () => {
-  const helpCards = [
-    {
-      title: "Join the funding",
-      description:
-        "Support our programs with a one-time or recurring donation to help us reach more communities across Africa.",
-      link: "Learn more...",
-    },
-    {
-      title: "Become a volunteer",
-      description:
-        "Join our team of dedicated volunteers and make a direct impact in communities through hands-on involvement.",
-      link: "Learn more...",
-    },
-    {
-      title: "Share with friends",
-      description:
-        "Help us spread awareness by sharing our mission and impact with your network and social media.",
-      link: "Learn more...",
-    },
-  ];
-
   return (
-    <div className="relative">
+    <div className="relative md:z-80 bg-[#D8EEE7]">
       {/* Top Graphics Section */}
-      <section className="relative bg-primary min-h-[600px] flex items-center overflow-hidden z-60">
+      <section className="relative flex items-center overflow-hidden md:z-70 -mb-[280px] min-h-[991px]">
         {/* Graphics Background */}
         <div
-          className="absolute inset-0 w-full h-full"
+          className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat`}
           style={{
             backgroundImage: `url(${graphics})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+          }}  
         />
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Left Content */}
+        <div className="relative max-w-[1645px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex justify-between items-center">
             <div className="text-white space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold poppins-bold">
+              <h1 className="text-4xl md:text-5xl lg:text-[48px] font-bold poppins-bold">
                 Making a Measurable Difference
               </h1>
-              <p className="text-xl md:text-2xl poppins-regular">
+              <p className="text-base md:text-[18px] poppins-regular">
                 Turning compassion into lasting change you can see and measure.
               </p>
               <div className="pt-4">
@@ -63,46 +38,35 @@ const GraphicsLayeredSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Image */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative">
                 <img
                   src={love}
                   alt="Child making heart shape"
-                  className="w-80 h-80 object-cover rounded-full"
                 />
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Giraffe Section - Sticky */}
-      <section className="sticky top-0 z-60 w-full">
-        <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
-          <img
-            src={giraffe}
-            alt="Man feeding giraffe"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <section className="md:sticky top-0 w-full">
+        <img
+          src={giraffe}
+          alt="Man feeding giraffe"
+          className="w-full h-full object-cover"
+        />
       </section>
 
       {/* Bottom Graphics Section */}
-      <section className="relative bg-primary min-h-[600px] py-16 overflow-hidden z-70">
+      <section className="relative bg-gradient-to-b from-transparent to-white h-[991px] overflow-hidden md:z-70 flex items-center justify-center">
         {/* Graphics Background */}
         <div
-          className="absolute inset-0 w-full h-full"
+          className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat`}
           style={{
             backgroundImage: `url(${graphics})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         />
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative md:z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white poppins-bold">
@@ -137,5 +101,26 @@ const GraphicsLayeredSection: React.FC = () => {
     </div>
   );
 };
+
+const helpCards = [
+  {
+    title: "Join the funding",
+    description:
+      "Support our programs with a one-time or recurring donation to help us reach more communities across Africa.",
+    link: "Learn more...",
+  },
+  {
+    title: "Become a volunteer",
+    description:
+      "Join our team of dedicated volunteers and make a direct impact in communities through hands-on involvement.",
+    link: "Learn more...",
+  },
+  {
+    title: "Share with friends",
+    description:
+      "Help us spread awareness by sharing our mission and impact with your network and social media.",
+    link: "Learn more...",
+  },
+];
 
 export default GraphicsLayeredSection;
