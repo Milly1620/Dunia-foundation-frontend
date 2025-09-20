@@ -1,9 +1,11 @@
 import React from "react";
 import PillarCard from "./PillarCard";
+import lines from "../assets/Lines.svg";
 
 const SevenPillarsSection: React.FC = () => {
   return (
-    <section className="relative md:z-70 md:bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] py-10 md:py-[124px] px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden md:z-70 md:bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] py-10 md:py-[124px] px-4 sm:px-6 lg:px-8">
+      <img src={lines} alt="Lines" className="hidden md:block absolute left-[-90px] top-[-600px]" />
       <div className="max-w-[1520px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">

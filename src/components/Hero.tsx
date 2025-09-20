@@ -3,12 +3,13 @@ import heroImage from "../assets/hero.svg";
 import heroMini from "../assets/heromini.svg";
 import pathright from "../assets/pathright.svg";
 import pathleft from "../assets/pathleft.svg";
+import line from "../assets/Line.svg";
 
 const Hero = () => {
   return (
     <div className="relative overflow-x-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5  md:pt-[72px] md:pb-[120px] flex justify-center items-center">
       <div className="max-w-[1501px] md:px-5 flex flex-col md:flex-row justify-between items-center">
-        <div className="block md:hidden mb-[61px]">
+        <div className="block md:hidden mb-[61px] z-10">
           <img src={heroMini} alt="Hero" />
         </div>
         <div className="md:w-[350px] lg:w-[697.36px] mb-5 md:mb-0">
@@ -41,6 +42,11 @@ const Hero = () => {
         <div className="hidden md:block">
           <img src={heroImage} alt="Hero" />
         </div>
+        <img
+          src={line}
+          alt="Line"
+          className="absolute right-[-77px]"
+        />
         <img
           src={pathright}
           alt="Path Right"

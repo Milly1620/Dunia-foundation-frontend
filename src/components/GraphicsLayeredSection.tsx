@@ -14,7 +14,7 @@ const GraphicsLayeredSection: React.FC = () => {
           className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat`}
           style={{
             backgroundImage: `url(${graphics})`,
-          }}  
+          }}
         />
 
         {/* Content Container */}
@@ -38,10 +38,7 @@ const GraphicsLayeredSection: React.FC = () => {
               </div>
             </div>
 
-                <img
-                  src={love}
-                  alt="Child making heart shape"
-                />
+            <img src={love} alt="Child making heart shape" />
           </div>
         </div>
       </section>
@@ -56,7 +53,9 @@ const GraphicsLayeredSection: React.FC = () => {
       </section>
 
       {/* Bottom Graphics Section */}
-      <section className="relative bg-gradient-to-b from-transparent to-white h-[991px] overflow-hidden md:z-70 flex items-center justify-center">
+      <section className="relative h-[991px] overflow-hidden md:z-70 flex items-center justify-center">
+        {/* Solid White Background for Bottom Half */}
+        <div className="absolute bottom-0 left-0 right-0 bg-white h-1/2"></div>
         {/* Graphics Background */}
         <div
           className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat`}
