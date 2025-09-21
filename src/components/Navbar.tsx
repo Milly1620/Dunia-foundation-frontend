@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
 import logo from "../assets/logo.svg";
 import { X } from "lucide-react";
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -14,11 +16,27 @@ const Navbar: React.FC = () => {
   };
 
   const navigationLinks = [
-    { name: "Home", href: "#", isActive: true },
-    { name: "Programs", href: "#" },
-    { name: "About us", href: "#" },
-    { name: "Gallery", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Home", href: "/", isActive: location.pathname === "/" },
+    {
+      name: "Programs",
+      href: "/programs",
+      isActive: location.pathname === "/programs",
+    },
+    {
+      name: "About us",
+      href: "/about",
+      isActive: location.pathname === "/about",
+    },
+    {
+      name: "Gallery",
+      href: "/gallery",
+      isActive: location.pathname === "/gallery",
+    },
+    {
+      name: "Contact",
+      href: "/contact",
+      isActive: location.pathname === "/contact",
+    },
   ];
 
   return (
@@ -27,15 +45,17 @@ const Navbar: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] flex justify-center items-center lg:px-[80px] px-[20px]">
         <div className="w-full max-w-[1920px] flex justify-between items-center">
           {/* Logo */}
-          <img src={logo} alt="Sesa Foundation" />
+          <Link to="/">
+            <img src={logo} alt="Sesa Foundation" />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-[80px]">
             <div className="flex items-center space-x-8">
               {navigationLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className={`poppins-medium transition-colors duration-200 ${
                     link.isActive
                       ? "text-main-green text-[18px]"
@@ -43,12 +63,14 @@ const Navbar: React.FC = () => {
                   }`}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
-            <Button variant="primary" size="md" className="w-[102px]">
-              Donate
-            </Button>
+            <Link to="/donate">
+              <Button variant="primary" size="md" className="w-[102px]">
+                Donate
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -105,7 +127,9 @@ const Navbar: React.FC = () => {
         >
           {/* Drawer Header */}
           <div className="flex items-center justify-between p-6 border-b border-main-black">
-            <img src={logo} alt="Sesa Foundation" />
+            <Link to="/" onClick={closeMobileMenu}>
+              <img src={logo} alt="Sesa Foundation" />
+            </Link>
 
             <X className="w-6 h-6" onClick={closeMobileMenu} />
           </div>
@@ -114,9 +138,9 @@ const Navbar: React.FC = () => {
           <div className="p-6">
             <nav className="space-y-4">
               {navigationLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   onClick={closeMobileMenu}
                   className={`block poppins-medium text-base transition-colors duration-200 ${
                     link.isActive
@@ -125,12 +149,14 @@ const Navbar: React.FC = () => {
                   }`}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
               <div className="pt-4">
-                <Button variant="primary" size="md" className="w-full">
-                  Donate
-                </Button>
+                <Link to="/donate" onClick={closeMobileMenu}>
+                  <Button variant="primary" size="md" className="w-full">
+                    Donate
+                  </Button>
+                </Link>
               </div>
             </nav>
           </div>
