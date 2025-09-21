@@ -6,6 +6,7 @@ import program4 from "../assets/program4.svg";
 import program5 from "../assets/program5.svg";
 import program6 from "../assets/program6.svg";
 import program7 from "../assets/program7.svg";
+import ProgramCard from "../components/ProgramCard";
 
 function ProgramsPage() {
   const programs = [
@@ -133,59 +134,11 @@ function ProgramsPage() {
       <div className="bg-white py-20">
         <div className="max-w-[1520px] mx-auto px-4">
           {programs.slice(0, 3).map((program, index) => (
-            <div
+            <ProgramCard
               key={program.id}
-              className={`mb-20 ${
-                index !== 2 ? "border-b border-gray-200 pb-20" : ""
-              }`}
-            >
-              <div
-                className={`flex flex-col ${
-                  program.imagePosition === "right"
-                    ? "lg:flex-row"
-                    : "lg:flex-row-reverse"
-                } items-center gap-12`}
-              >
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-4">
-                      {program.id}
-                    </div>
-                    <h2 className="text-3xl font-bold text-gray-800">
-                      {program.title}
-                    </h2>
-                  </div>
-
-                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                    {program.description}
-                  </p>
-
-                  {/* Statistics */}
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    {program.stats.map((stat, statIndex) => (
-                      <div key={statIndex} className="text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-2">
-                          {stat.value}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          {stat.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Image */}
-                <div className="flex-1">
-                  <img
-                    src={program.image}
-                    alt={program.title}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
-            </div>
+              program={program}
+              showBorder={index !== 2}
+            />
           ))}
         </div>
       </div>
@@ -199,61 +152,11 @@ function ProgramsPage() {
       <div className="bg-white py-20">
         <div className="max-w-[1520px] mx-auto px-4">
           {programs.slice(3).map((program, index) => (
-            <div
+            <ProgramCard
               key={program.id}
-              className={`mb-20 ${
-                index !== programs.slice(3).length - 1
-                  ? "border-b border-gray-200 pb-20"
-                  : ""
-              }`}
-            >
-              <div
-                className={`flex flex-col ${
-                  program.imagePosition === "right"
-                    ? "lg:flex-row"
-                    : "lg:flex-row-reverse"
-                } items-center gap-12`}
-              >
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-4">
-                      {program.id}
-                    </div>
-                    <h2 className="text-3xl font-bold text-gray-800">
-                      {program.title}
-                    </h2>
-                  </div>
-
-                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                    {program.description}
-                  </p>
-
-                  {/* Statistics */}
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    {program.stats.map((stat, statIndex) => (
-                      <div key={statIndex} className="text-center">
-                        <div className="text-2xl font-bold text-green-600 mb-2">
-                          {stat.value}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          {stat.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Image */}
-                <div className="flex-1">
-                  <img
-                    src={program.image}
-                    alt={program.title}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
-            </div>
+              program={program}
+              showBorder={index !== programs.slice(3).length - 1}
+            />
           ))}
         </div>
       </div>
