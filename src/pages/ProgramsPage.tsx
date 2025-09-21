@@ -1,4 +1,4 @@
-import Path from "../assets/PATH.svg";
+import Path from "../assets/programspath.svg";
 import program1 from "../assets/program1.svg";
 import program2 from "../assets/program2.svg";
 import program3 from "../assets/program3.svg";
@@ -7,6 +7,7 @@ import program5 from "../assets/program5.svg";
 import program6 from "../assets/program6.svg";
 import program7 from "../assets/program7.svg";
 import ProgramCard from "../components/ProgramCard";
+import CallToActionSection from "../components/CallToActionSection";
 
 function ProgramsPage() {
   const programs = [
@@ -113,13 +114,13 @@ function ProgramsPage() {
   return (
     <div>
       {/* Hero Section */}
-      <div className="bg-[#D8EEE7] py-20">
+      <div className="bg-[#EDF6F3] md:py-20 py-10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold text-gray-800 mb-6">
+            <h1 className="text-5xl poppins-bold text-text-black mb-6">
               Creating Lasting Change in Communities
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="md:text-[18px] poppins-regular text-gray max-w-[906px] mx-auto leading-relaxed">
               Sesa Foundation empowers communities across Ghana and Africa
               through comprehensive development programs in education,
               healthcare, clean water access, and economic empowerment. 'Sesa'
@@ -132,34 +133,50 @@ function ProgramsPage() {
 
       {/* First Half - Programs 1-3 */}
       <div className="bg-white py-20">
-        <div className="max-w-[1520px] mx-auto px-4">
-          {programs.slice(0, 3).map((program, index) => (
-            <ProgramCard
-              key={program.id}
-              program={program}
-              showBorder={index !== 2}
-            />
+        <div className="max-w-[1520px] mx-auto px-4 space-y-20">
+          {programs.slice(0, 3).map((program) => (
+            <ProgramCard key={program.id} program={program} />
           ))}
         </div>
       </div>
 
       {/* Separator */}
       <div className="w-full">
-        <img src={Path} alt="Separator" className="w-full h-auto" />
+        <img src={Path} alt="Separator" />
       </div>
 
       {/* Second Half - Programs 4-7 */}
       <div className="bg-white py-20">
         <div className="max-w-[1520px] mx-auto px-4">
-          {programs.slice(3).map((program, index) => (
-            <ProgramCard
-              key={program.id}
-              program={program}
-              showBorder={index !== programs.slice(3).length - 1}
-            />
+          {programs.slice(3).map((program) => (
+            <ProgramCard key={program.id} program={program} />
           ))}
         </div>
       </div>
+
+      {/* Call to Action Section */}
+      <CallToActionSection
+        title="Join Us in Creating Change"
+        description="Every program we run is designed to create lasting, sustainable change. Your support helps us expand these initiatives and reach more communities across Africa."
+        titleClass="text-white"
+        descriptionClass="text-white"
+        buttons={[
+          {
+            text: "Support our programs",
+            variant: "secondary",
+            size: "md",
+            className: "text-[15.4px]",
+            onClick: () => (window.location.href = "/donate"),
+          },
+          {
+            text: "Get involved",
+            variant: "primary",
+            size: "md",
+            className: "border border-white",
+            onClick: () => (window.location.href = "/contact"),
+          },
+        ]}
+      />
     </div>
   );
 }

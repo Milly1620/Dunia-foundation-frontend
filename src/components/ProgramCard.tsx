@@ -9,57 +9,55 @@ interface Program {
 
 interface ProgramCardProps {
   program: Program;
-  showBorder?: boolean;
 }
 
-function ProgramCard({ program, showBorder = true }: ProgramCardProps) {
+function ProgramCard({ program }: ProgramCardProps) {
   return (
     <div
-      className={`mb-20 ${showBorder ? "border-b border-gray-200 pb-20" : ""}`}
+      className={`flex flex-col ${
+        program.imagePosition === "right"
+          ? "lg:flex-row"
+          : "lg:flex-row-reverse"
+      } items-center justify-between`}
     >
-      <div
-        className={`flex flex-col ${
-          program.imagePosition === "right"
-            ? "lg:flex-row"
-            : "lg:flex-row-reverse"
-        } items-center gap-12`}
-      >
-        {/* Content */}
-        <div className="flex-1">
-          <div className="flex items-center mb-6">
-            <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-4">
-              {program.id}
+      {/* Content */}
+      <div className="max-w-[691px]">
+        <div className="relative w-[88px] h-[88px] mb-6">
+          {/* Olive green background square (offset) */}
+          <div className="w-[88px] h-[88px] bg-[#6C8636] absolute top-2 left-2"></div>
+          {/* Dark teal foreground square */}
+          <div className="w-[88px] h-[88px] bg-[#2D5A4A] relative flex items-center justify-center text-white poppins-bold text-[48px]">
+            {program.id}
+          </div>
+        </div>
+        <h2 className="md:text-[48px] text-[24px] leading-[120%] poppins-bold text-main-black mb-2">
+          {program.title}
+        </h2>
+
+        <p className="text-[18px] poppins-regular text-gray mb-6 leading-relaxed">
+          {program.description}
+        </p>
+
+        {/* Statistics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {program.stats.map((stat, statIndex) => (
+            <div key={statIndex} className="text-center">
+              <p className="text-2xl inter-semibold text-primary mb-2">
+                {stat.value}
+              </p>
+              <p className="poppins-regular text-gray">{stat.label}</p>
             </div>
-            <h2 className="text-3xl font-bold text-gray-800">
-              {program.title}
-            </h2>
-          </div>
-
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-            {program.description}
-          </p>
-
-          {/* Statistics */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {program.stats.map((stat, statIndex) => (
-              <div key={statIndex} className="text-center">
-                <div className="text-2xl font-bold text-green-600 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
+      </div>
 
-        {/* Image */}
-        <div className="flex-1">
-          <img
-            src={program.image}
-            alt={program.title}
-            className="w-full h-auto"
-          />
-        </div>
+      {/* Image */}
+      <div>
+        <img
+          src={program.image}
+          alt={program.title}
+          className="w-full h-auto"
+        />
       </div>
     </div>
   );

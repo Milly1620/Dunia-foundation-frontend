@@ -1,33 +1,61 @@
-import React from "react";
 import Button from "./Button";
 
-const CallToActionSection: React.FC = () => {
+interface CTAButton {
+  text: string;
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
+  onClick?: () => void;
+  className?: string;
+}
+
+interface CallToActionSectionProps {
+  title: string;
+  description: string;
+  buttons: CTAButton[];
+  titleClass?: string;
+  descriptionClass?: string;
+  className?: string;
+}
+
+function CallToActionSection({
+  title,
+  description,
+  buttons,
+  titleClass,
+  descriptionClass,
+  className = "",
+}: CallToActionSectionProps) {
   return (
-    <section className="bg-gradient-to-b from-[#D8EEE7] to-[#F2F8F6] py-10 md:py-[184px] px-4 sm:px-6 lg:px-8 md:sticky z-80">
-      <div className="max-w-[772.37px] mx-auto flex flex-col md:items-center md:justify-center">
-        {/* Heading */}
-        <h2 className="text-[24px] md:text-[40px] text-main-black mb-2 poppins-semibold">
-          Ready to Make a Difference?
-        </h2>
-
-        {/* Description */}
-        <p className="md:text-center text-[18px] text-gray poppins-regular">
-          Join thousands of supporters who are helping us create lasting change
-          in communities across Africa. Every contribution, big or small, makes
-          a real difference.
-        </p>
-
-        {/* CTA Button */}
-        <Button
-          variant="primary"
-          size="md"
-          className="w-full md:w-[432px] mt-6"
+    <div
+      className={`md:py-[185px] py-10 px-4 md:px-[185px] bg-primary ${className}`}  
+    >
+      <div className="max-w-[772px] mx-auto text-center">
+        <h2
+          className={`md:text-[40px] text-[24px] leading-[120%] poppins-semibold mb-2 ${titleClass}`}
         >
-          Donate today
-        </Button>
+          {title}
+        </h2>
+        <p
+          className={`text-[18px] mb-6 poppins-regular leading-relaxed ${descriptionClass}`}
+        >
+          {description}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {buttons?.map((button, index) => (
+            <Button
+              key={index}
+              variant={button.variant || "primary"}
+              size={button.size || "md"}
+              onClick={button.onClick}
+              className={`w-[211.5px] ${button.className || ""}`}
+            >
+              {button.text}
+            </Button>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
-};
+}
 
 export default CallToActionSection;

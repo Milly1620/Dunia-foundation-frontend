@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CallToActionSection from "../components/CallToActionSection";
 
 function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -82,10 +83,11 @@ function GalleryPage() {
       : galleryItems.filter((item) => item.category === selectedCategory);
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div>
+      <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Gallery</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-text-black mb-4">Gallery</h1>
+          <p className="text-lg text-gray max-w-2xl mx-auto">
             Explore our journey through photos and stories of impact, community
             engagement, and positive change.
           </p>
@@ -179,6 +181,24 @@ function GalleryPage() {
           </button>
         </div>
       </div>
+
+      <CallToActionSection
+        title="Be Part of the Story"
+        description="These images represent real change happening in communities across Africa. Your support helps us create more stories of hope and transformation."
+        buttons={[
+          {
+            text: "Share Photos",
+            variant: "primary",
+            onClick: () => (window.location.href = "/contact"),
+          },
+          {
+            text: "View Programs",
+            variant: "outline",
+            onClick: () => (window.location.href = "/programs"),
+          },
+        ]}
+      />
+    </div>
   );
 }
 
