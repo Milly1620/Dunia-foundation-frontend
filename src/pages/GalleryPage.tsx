@@ -189,12 +189,12 @@ function GalleryPage() {
           {
             text: "Share Photos",
             variant: "primary",
-            onClick: () => (window.location.href = "/contact"),
+            href: "/contact",
           },
           {
             text: "View Programs",
             variant: "outline",
-            onClick: () => (window.location.href = "/programs"),
+            href: "/programs",
           },
         ]}
       />

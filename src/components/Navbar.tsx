@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import logo from "../assets/logo.svg";
 import { X } from "lucide-react";
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -13,6 +14,13 @@ const Navbar: React.FC = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleNavigation = (href: string) => {
+    // Scroll to top first
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Then navigate
+    navigate(href);
   };
 
   const navigationLinks = [
@@ -45,17 +53,17 @@ const Navbar: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] flex justify-center items-center lg:px-[80px] px-[20px]">
         <div className="w-full max-w-[1920px] flex justify-between items-center">
           {/* Logo */}
-          <Link to="/">
+          <button onClick={() => handleNavigation("/")}>
             <img src={logo} alt="Sesa Foundation" />
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-[80px]">
             <div className="flex items-center space-x-8">
               {navigationLinks.map((link) => (
-                <Link
+                <button
                   key={link.name}
-                  to={link.href}
+                  onClick={() => handleNavigation(link.href)}
                   className={`poppins-medium transition-colors duration-200 ${
                     link.isActive
                       ? "text-main-green text-[18px]"
@@ -63,14 +71,14 @@ const Navbar: React.FC = () => {
                   }`}
                 >
                   {link.name}
-                </Link>
+                </button>
               ))}
             </div>
-            <Link to="/donate">
+            <button onClick={() => handleNavigation("/donate")}>
               <Button variant="primary" size="md" className="w-[102px]">
                 Donate
               </Button>
-            </Link>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -127,9 +135,14 @@ const Navbar: React.FC = () => {
         >
           {/* Drawer Header */}
           <div className="flex items-center justify-between p-6 border-b border-main-black">
-            <Link to="/" onClick={closeMobileMenu}>
+            <button
+              onClick={() => {
+                handleNavigation("/");
+                closeMobileMenu();
+              }}
+            >
               <img src={logo} alt="Sesa Foundation" />
-            </Link>
+            </button>
 
             <X className="w-6 h-6" onClick={closeMobileMenu} />
           </div>
@@ -138,10 +151,12 @@ const Navbar: React.FC = () => {
           <div className="p-6">
             <nav className="space-y-4">
               {navigationLinks.map((link) => (
-                <Link
+                <button
                   key={link.name}
-                  to={link.href}
-                  onClick={closeMobileMenu}
+                  onClick={() => {
+                    handleNavigation(link.href);
+                    closeMobileMenu();
+                  }}
                   className={`block poppins-medium text-base transition-colors duration-200 ${
                     link.isActive
                       ? "text-main-green font-medium"
@@ -149,14 +164,19 @@ const Navbar: React.FC = () => {
                   }`}
                 >
                   {link.name}
-                </Link>
+                </button>
               ))}
               <div className="pt-4">
-                <Link to="/donate" onClick={closeMobileMenu}>
+                <button
+                  onClick={() => {
+                    handleNavigation("/donate");
+                    closeMobileMenu();
+                  }}
+                >
                   <Button variant="primary" size="md" className="w-full">
                     Donate
                   </Button>
-                </Link>
+                </button>
               </div>
             </nav>
           </div>

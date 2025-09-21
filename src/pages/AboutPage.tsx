@@ -17,12 +17,12 @@ function AboutPage() {
           {
             text: "Support our programs",
             variant: "secondary",
-            onClick: () => (window.location.href = "/donate"),
+            href: "/donate",
           },
           {
             text: "Get involved",
             variant: "outline",
-            onClick: () => (window.location.href = "/contact"),
+            href: "/contact",
           },
         ]}
       />

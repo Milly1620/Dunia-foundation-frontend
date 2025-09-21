@@ -166,14 +166,14 @@ function ProgramsPage() {
             variant: "secondary",
             size: "md",
             className: "text-[15.4px]",
-            onClick: () => (window.location.href = "/donate"),
+            href: "/donate",
           },
           {
             text: "Get involved",
             variant: "primary",
             size: "md",
             className: "border border-white",
-            onClick: () => (window.location.href = "/contact"),
+            href: "/contact",
           },
         ]}
       />

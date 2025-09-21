@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 interface CTAButton {
   text: string;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
+  href?: string;
   onClick?: () => void;
   className?: string;
 }
@@ -25,9 +27,23 @@ function CallToActionSection({
   descriptionClass,
   className = "",
 }: CallToActionSectionProps) {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (button: CTAButton) => {
+    // Scroll to top first
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Then navigate if href is provided
+    if (button.href) {
+      navigate(button.href);
+    } else if (button.onClick) {
+      button.onClick();
+    }
+  };
+
   return (
     <div
-      className={`md:py-[185px] py-10 px-4 md:px-[185px] bg-primary ${className}`}  
+      className={`md:py-[185px] py-10 px-4 md:px-[185px] bg-primary ${className}`}
     >
       <div className="max-w-[772px] mx-auto text-center">
         <h2
@@ -46,7 +62,7 @@ function CallToActionSection({
               key={index}
               variant={button.variant || "primary"}
               size={button.size || "md"}
-              onClick={button.onClick}
+              onClick={() => handleButtonClick(button)}
               className={`w-[211.5px] ${button.className || ""}`}
             >
               {button.text}
