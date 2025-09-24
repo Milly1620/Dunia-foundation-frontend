@@ -1,6 +1,10 @@
 import React from "react";
 import PillarCard from "./PillarCard";
 import lines from "../assets/Lines.svg";
+import image1 from "../assets/Image1.svg";
+import image2 from "../assets/Image2.svg";
+import image3 from "../assets/Image3.svg";
+import image4 from "../assets/Image4.svg";
 
 const SevenPillarsSection: React.FC = () => {
   return (
@@ -22,6 +26,7 @@ const SevenPillarsSection: React.FC = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-4 md:mb-10">
           {pillars.map((pillar, index) => (
             <PillarCard
+              image={pillar.image}
               key={index}
               title={pillar.title}
               description={pillar.description}
@@ -46,6 +51,7 @@ const SevenPillarsSection: React.FC = () => {
 };
 const pillars = [
   {
+    image: image1,
     title: "Education",
     description:
       "Building schools, training teachers, and providing scholarships to ensure every child has access to quality education.",
@@ -54,6 +60,7 @@ const pillars = [
     placeholderColor: "from-blue-400 to-blue-600",
   },
   {
+    image: image2,
     title: "Health care",
     description:
       "Establishing clinics, training healthcare workers, and providing medical supplies to underserved communities.",
@@ -62,6 +69,7 @@ const pillars = [
     placeholderColor: "from-green-400 to-green-600",
   },
   {
+    image: image3,
     title: "Agriculture",
     description:
       "Teaching sustainable farming practices and providing resources to improve food security and income.",
@@ -70,6 +78,7 @@ const pillars = [
     placeholderColor: "from-yellow-400 to-yellow-600",
   },
   {
+    image: image4,
     title: "Clean water",
     description:
       "Building boreholes and water systems for communities without clean water access.",

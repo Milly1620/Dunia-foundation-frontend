@@ -26,7 +26,7 @@ function CallToActionSection({
   titleClass,
   descriptionClass,
   className = "",
-}: CallToActionSectionProps) {
+}: Readonly<CallToActionSectionProps>) {
   const navigate = useNavigate();
 
   const handleButtonClick = (button: CTAButton) => {
@@ -56,8 +56,8 @@ function CallToActionSection({
         >
           {description}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          {buttons?.map((button, index) => (
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          {buttons?.map((button: CTAButton, index: number) => (
             <Button
               key={index}
               variant={button.variant || "primary"}

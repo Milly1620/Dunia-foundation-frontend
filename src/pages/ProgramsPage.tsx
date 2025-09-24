@@ -115,7 +115,6 @@ function ProgramsPage() {
     <div>
       {/* Hero Section */}
       <div className="bg-[#EDF6F3] md:py-20 py-10">
-        <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl poppins-bold text-text-black mb-6">
               Creating Lasting Change in Communities
@@ -128,7 +127,6 @@ function ProgramsPage() {
               creating.
             </p>
           </div>
-        </div>
       </div>
 
       {/* First Half - Programs 1-3 */}
