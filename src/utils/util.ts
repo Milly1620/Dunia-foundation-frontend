@@ -1,4 +1,4 @@
-import { Clock, Mail, Phone } from "lucide-react";
+import { Clock, Mail, Phone, LocateIcon } from "lucide-react";
 
 const contactInfo = [
   {
@@ -10,6 +10,11 @@ const contactInfo = [
     icon: Phone,
     title: "Call Us",
     details: "+233 24 123 4567",
+  },
+  {
+    icon: LocateIcon,
+    title: "Visit Us",
+    details: "East Legon Executive Fitness Club",
   },
   {
     icon: Clock,

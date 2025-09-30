@@ -4,8 +4,6 @@ import ContactForm from "./ContactForm";
 import contactInfo from "../utils/util";
 
 const GetInTouchSection: React.FC = () => {
-  
-
   return (
     <section className="bg-white py-16 px-4 sm:px-6 lg:px-8 md:sticky z-70">
       <div className="max-w-[1240px] mx-auto">
@@ -23,19 +21,21 @@ const GetInTouchSection: React.FC = () => {
         {/* Two Column Layout */}
         <div className="flex flex-col md:flex-row gap-10">
           {/* Left Column - Contact Information */}
-          <div className="space-y-4 w-full">
-            {contactInfo.map((contact, index) => (
-              <ContactCard
-                key={index}
-                icon={contact.icon}
-                title={contact.title}
-                details={contact.details}
-              />
-            ))}
+          <div className="flex flex-col justify-between w-full md:w-[35%] space-y-10">
+            {contactInfo
+              .filter((_, index) => index !== 2)
+              .map((contact, index) => (
+                <ContactCard
+                  key={index}
+                  icon={contact.icon}
+                  title={contact.title}
+                  details={contact.details}
+                />
+              ))}
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className=" w-full">
+          <div className=" w-full md:w-[65%]">
             <ContactForm />
           </div>
         </div>
@@ -43,7 +43,5 @@ const GetInTouchSection: React.FC = () => {
     </section>
   );
 };
-
-
 
 export default GetInTouchSection;

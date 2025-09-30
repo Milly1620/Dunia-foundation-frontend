@@ -17,15 +17,13 @@ const ContactCard: React.FC<ContactCardProps> = ({
 
   return (
     <div
-      className={`2xl:w-[432px] w-full bg-white border border-border py-[55px] px-[24px] shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
+      className={`w-full bg-white border border-border py-[55px] px-[24px] shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
     >
-      <div className="flex items-start space-x-4">
+      <div className="flex items-center space-x-6">
         {/* Icon */}
-        <div className="flex-shrink-0">
           <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
             <Icon size={20} className="text-white" />
           </div>
-        </div>
 
         {/* Content */}
         <div className="flex-1">

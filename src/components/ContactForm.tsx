@@ -8,7 +8,7 @@ interface FormData {
   message: string;
 }
 
-const ContactForm: React.FC = () => {
+const ContactForm: React.FC<{ border?: boolean }> = ({ border = true }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -40,7 +40,11 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="2xl:w-[768px] w-full bg-white border border-border py-6 px-[35px] shadow-sm">
+    <div
+      className={` w-full ${
+        border ? "border border-border py-6 px-[35px]" : ""
+      }`}
+    >
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name Field */}
         <div>
