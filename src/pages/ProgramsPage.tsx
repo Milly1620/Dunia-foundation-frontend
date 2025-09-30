@@ -40,6 +40,7 @@ function ProgramsPage() {
       <div className="w-full">
         <img src={Path} alt="Separator" />
       </div>
+      
 
       {/* Second Half - Programs 4-7 */}
       <div className="bg-white py-20">
