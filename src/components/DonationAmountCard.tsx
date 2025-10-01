@@ -20,8 +20,8 @@ const DonationAmountCard: React.FC<DonationAmountCardProps> = ({
       type="button"
       onClick={onClick}
       className={`
-        p-6 text-left border-2 rounded-lg transition-all duration-200
-        hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+        px-[41px] py-[30.5px] text-center border transition-all duration-200
+        hover:shadow-md 
         ${
           isSelected
             ? "bg-primary text-white border-primary"
@@ -30,8 +30,8 @@ const DonationAmountCard: React.FC<DonationAmountCardProps> = ({
         ${className}
       `}
     >
-      <div className="font-bold text-2xl mb-2">{amount}</div>
-      <div className="text-sm">{description}</div>
+      <div className="poppins-semibold text-2xl mb-2">{amount}</div>
+      <div className="text-base">{description}</div>
     </button>
   );
 };

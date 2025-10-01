@@ -30,7 +30,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     <div className={`space-y-2 ${className}`}>
       <label
         htmlFor={name}
-        className="block text-sm font-medium text-gray-900 poppins-medium"
+        className="block text-base poppins-medium text-[#232323]"
       >
         {label}
       </label>
@@ -41,7 +41,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
         onChange={onChange}
         required={required}
         className="
-          w-full px-4 py-3 border border-gray-300 rounded-lg
+          w-full px-4 py-3 border border-[#D4D4D8]
           focus:ring-2 focus:ring-primary focus:border-transparent
           outline-none transition-colors duration-200 poppins-regular
           bg-white appearance-none

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import logo from "../assets/logo.svg";
-import { X } from "lucide-react";
+import { X, Menu } from "lucide-react";
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -49,8 +49,8 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Main Navbar */}
-      <nav className="sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] flex justify-center items-center lg:px-[80px] px-[20px]">
+      {/* Desktop Navbar */}
+      <nav className="hidden lg:flex sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] justify-center items-center lg:px-[80px]">
         <div className="w-full max-w-[1920px] flex justify-between items-center">
           {/* Logo */}
           <button onClick={() => handleNavigation("/")}>
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-[80px]">
+          <div className="flex items-center space-x-[80px]">
             <div className="flex items-center space-x-8">
               {navigationLinks.map((link) => (
                 <button
@@ -80,40 +80,25 @@ const Navbar: React.FC = () => {
               </Button>
             </button>
           </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={toggleMobileMenu}
-              className="text-main-black hover:text-main-green focus:outline-none focus:text-main-green"
-              aria-label="Toggle mobile menu"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
         </div>
       </nav>
+
+      {/* Mobile Floating Menu Button */}
+      <div className="lg:hidden fixed top-6 right-6 z-50">
+        <div className="relative w-[60px] h-[60px]">
+          {/* Background circle (bottom layer) */}
+          <div className="absolute inset-0 w-full h-full rounded-full bg-[#6C8636] shadow-md" />
+
+          {/* Interactive button (top layer) */}
+          <button
+            onClick={toggleMobileMenu}
+            className="absolute top-[-5px] right-[2px] w-full h-full rounded-full bg-[#2A5F58] flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-200 z-10"
+            aria-label="Toggle mobile menu"
+          >
+            <Menu className="h-6 w-6 text-white" strokeWidth={2.5} />
+          </button>
+        </div>
+      </div>
 
       {/* Mobile Side Drawer */}
       <div
@@ -122,10 +107,12 @@ const Navbar: React.FC = () => {
         }`}
       >
         {/* Backdrop */}
-        <div
-          className="fixed inset-0 bg-main-black bg-opacity-50"
+        <button
+          className="fixed inset-0 bg-main-black bg-opacity-50 w-full h-full"
           onClick={closeMobileMenu}
-        ></div>
+          aria-label="Close menu backdrop"
+          tabIndex={-1}
+        />
 
         {/* Drawer */}
         <div
@@ -144,7 +131,13 @@ const Navbar: React.FC = () => {
               <img src={logo} alt="Sesa Foundation" />
             </button>
 
-            <X className="w-6 h-6" onClick={closeMobileMenu} />
+            <button
+              onClick={closeMobileMenu}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6 text-main-black" />
+            </button>
           </div>
 
           {/* Drawer Navigation */}

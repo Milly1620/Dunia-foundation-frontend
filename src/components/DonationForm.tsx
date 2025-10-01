@@ -6,6 +6,7 @@ import InputField from "./InputField";
 import SelectField from "./SelectField";
 import TextareaField from "./TextareaField";
 import CheckboxField from "./CheckboxField";
+import { useNavigate } from "react-router-dom";
 
 interface DonationData {
   donationType: string;
@@ -22,6 +23,7 @@ interface DonationData {
 }
 
 const DonationForm: React.FC = () => {
+  const navigate = useNavigate();
   const [donationData, setDonationData] = useState<DonationData>({
     donationType: "one-time",
     selectedAmount: "",
@@ -35,39 +37,6 @@ const DonationForm: React.FC = () => {
     country: "Ghana",
     notes: "",
   });
-
-  const donationOptions = [
-    { value: "one-time", label: "One-time" },
-    { value: "monthly", label: "Monthly" },
-  ];
-
-  const amountCards = [
-    { amount: "$25", description: "Educational materials" },
-    { amount: "$50", description: "Clean water access" },
-    { amount: "$100", description: "Healthcare support" },
-    { amount: "$250", description: "Skill Development" },
-    { amount: "$500", description: "Infrastructure Development" },
-    { amount: "$1000", description: "Complete program support" },
-  ];
-
-  const programOptions = [
-    { value: "where-needed", label: "Where needed most" },
-    { value: "education", label: "Education & Literacy" },
-    { value: "healthcare", label: "Healthcare Access" },
-    { value: "wash", label: "WASH Projects" },
-    { value: "agriculture", label: "Agricultural Development" },
-    { value: "women-youth", label: "Women & Youth Empowerment" },
-    { value: "community", label: "Community Development" },
-    { value: "emergency", label: "Emergency Response" },
-  ];
-
-  const countryOptions = [
-    { value: "Ghana", label: "Ghana" },
-    { value: "Nigeria", label: "Nigeria" },
-    { value: "Kenya", label: "Kenya" },
-    { value: "South Africa", label: "South Africa" },
-    { value: "Other", label: "Other" },
-  ];
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -97,11 +66,14 @@ const DonationForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-sm">
+    <div
+      className="max-w-[853px] mx-auto bg-white py-6 px-[35px]"
+      style={{ boxShadow: "0px 3px 10px 0px #D7FFD866" }}
+    >
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Donation Type Section */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 poppins-bold">
+          <h2 className="md:text-[35px] text-[24px] poppins-semibold text-primary border-b border-[#D4D4D8] pb-4">
             Donation Type
           </h2>
 
@@ -114,7 +86,7 @@ const DonationForm: React.FC = () => {
           />
 
           {/* Donation Amount Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {amountCards.map((card) => (
               <DonationAmountCard
                 key={card.amount}
@@ -137,7 +109,6 @@ const DonationForm: React.FC = () => {
               onChange={handleInputChange}
               placeholder="Enter custom amount"
               prefix="$"
-              className={donationData.selectedAmount ? "opacity-50" : ""}
             />
 
             <SelectField
@@ -160,7 +131,7 @@ const DonationForm: React.FC = () => {
 
         {/* Donor Information Section */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 poppins-bold">
+          <h2 className="text-[24px] poppins-semibold text-primary border-b border-[#D4D4D8] pb-2">
             Donor Information
           </h2>
 
@@ -226,18 +197,17 @@ const DonationForm: React.FC = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 pt-6">
+        <div className="flex flex-col sm:flex-row gap-4 justify-end">
           <Button
             type="button"
             variant="secondary"
             size="lg"
-            className="flex-1"
-            onClick={() => (window.location.href = "/")}
+            onClick={() => navigate("/")}
           >
             Go to home
           </Button>
 
-          <Button type="submit" variant="primary" size="lg" className="flex-1">
+          <Button type="submit" variant="primary" size="lg">
             Make Donation
           </Button>
         </div>
@@ -245,5 +215,38 @@ const DonationForm: React.FC = () => {
     </div>
   );
 };
+
+const donationOptions = [
+  { value: "one-time", label: "One-time" },
+  { value: "monthly", label: "Monthly" },
+];
+
+const amountCards = [
+  { amount: "$25", description: "Educational materials" },
+  { amount: "$50", description: "Clean water access" },
+  { amount: "$100", description: "Healthcare support" },
+  { amount: "$250", description: "Skill Development" },
+  { amount: "$500", description: "Infrastructure Development" },
+  { amount: "$1000", description: "Clean water access" },
+];
+
+const programOptions = [
+  { value: "where-needed", label: "Where needed most" },
+  { value: "education", label: "Education & Literacy" },
+  { value: "healthcare", label: "Healthcare Access" },
+  { value: "wash", label: "WASH Projects" },
+  { value: "agriculture", label: "Agricultural Development" },
+  { value: "women-youth", label: "Women & Youth Empowerment" },
+  { value: "community", label: "Community Development" },
+  { value: "emergency", label: "Emergency Response" },
+];
+
+const countryOptions = [
+  { value: "Ghana", label: "Ghana" },
+  { value: "Nigeria", label: "Nigeria" },
+  { value: "Kenya", label: "Kenya" },
+  { value: "South Africa", label: "South Africa" },
+  { value: "Other", label: "Other" },
+];
 
 export default DonationForm;
