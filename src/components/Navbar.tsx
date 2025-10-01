@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
       </nav>
 
       {/* Mobile Floating Menu Button */}
-      <div className="md:hidden fixed top-6 right-6 z-50">
+      <div className="md:hidden fixed top-2 right-4 z-50">
         <div className="relative w-[60px] h-[60px]">
           {/* Background circle (bottom layer) */}
           <div className="absolute inset-0 w-full h-full rounded-full bg-[#6C8636] shadow-md" />

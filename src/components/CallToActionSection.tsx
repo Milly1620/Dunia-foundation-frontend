@@ -52,7 +52,7 @@ function CallToActionSection({
           {title}
         </h2>
         <p
-          className={`text-[18px] text-gray mb-6 poppins-regular ${descriptionClass}`}
+          className={`md:text-[18px] text-gray mb-6 poppins-regular ${descriptionClass}`}
         >
           {description}
         </p>

@@ -1,4 +1,5 @@
 import Path from "../assets/programspath.svg";
+import PathMobile from "../assets/pathseparatormobile.svg";
 import program1 from "../assets/program1.svg";
 import program2 from "../assets/program2.svg";
 import program3 from "../assets/program3.svg";
@@ -13,12 +14,15 @@ function ProgramsPage() {
   return (
     <div>
       {/* Hero Section */}
-      <div className="bg-[#EDF6F3] md:py-20 py-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl poppins-bold text-text-black mb-6">
+      <div className="bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px]  pb-20 ">
+        <div className="max-w-4xl mx-auto text-left md:text-center">
+          <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[103px]">
+            Programs
+          </h1>
+          <h1 className="md:text-5xl text-2xl poppins-bold text-text-black mb-4 md:mb-6">
             Creating Lasting Change in Communities
           </h1>
-          <p className="md:text-[18px] poppins-regular text-gray max-w-[906px] mx-auto leading-relaxed">
+          <p className="text-base md:text-[18px] poppins-regular text-gray max-w-[906px] mx-auto leading-relaxed">
             Sesa Foundation empowers communities across Ghana and Africa through
             comprehensive development programs in education, healthcare, clean
             water access, and economic empowerment. 'Sesa' means change in Twi,
@@ -29,7 +33,7 @@ function ProgramsPage() {
 
       {/* First Half - Programs 1-3 */}
       <div className="bg-white py-20">
-        <div className="max-w-[1520px] mx-auto px-4 space-y-20">
+        <div className="max-w-[1520px] mx-auto px-4 space-y-15 lg:space-y-20">
           {programs.slice(0, 3).map((program) => (
             <ProgramCard key={program.id} program={program} />
           ))}
@@ -38,12 +42,12 @@ function ProgramsPage() {
 
       {/* Separator */}
       <div className="w-full">
-        <img src={Path} alt="Separator" />
+        <img src={Path} alt="Separator" className="hidden md:block w-full" />
+        <img src={PathMobile} alt="Separator" className="block md:hidden w-full" />
       </div>
-      
 
       {/* Second Half - Programs 4-7 */}
-      <div className="bg-white py-20">
+      <div className="bg-white lg:py-20 mt-[-350px] md:mt-[-250px] lg:mt-0">
         <div className="max-w-[1520px] mx-auto px-4">
           {programs.slice(3).map((program) => (
             <ProgramCard key={program.id} program={program} />
