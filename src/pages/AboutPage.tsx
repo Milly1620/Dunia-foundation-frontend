@@ -9,7 +9,7 @@ function AboutPage() {
     <div>
       <div className="w-full bg-gradient-to-b from-tertiary to-secondary">
         <div className="relative w-full">
-          <img src={Path} alt="Separator" />
+          <img src={Path} alt="Separator" className="w-full" />
           <div className="max-w-4xl mx-auto text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <h1 className="text-5xl poppins-bold mb-6">
               About Sesa Foundation
