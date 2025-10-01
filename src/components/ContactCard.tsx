@@ -30,7 +30,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
           <h3 className="text-2xl text-main-black mb-1 poppins-medium">
             {title}
           </h3>
-          <div className="space-y-1">
+          <div>
             {detailsArray.map((detail, index) => (
               <p key={index} className="text-gray poppins-regular">
                 {detail}

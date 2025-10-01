@@ -21,7 +21,7 @@ const GetInTouchSection: React.FC = () => {
         {/* Two Column Layout */}
         <div className="flex flex-col md:flex-row gap-10">
           {/* Left Column - Contact Information */}
-          <div className="flex flex-col justify-between w-full md:w-[35%] space-y-10">
+          <div className="flex flex-col justify-between w-full md:w-[35%]">
             {contactInfo
               .filter((_, index) => index !== 2)
               .map((contact, index) => (

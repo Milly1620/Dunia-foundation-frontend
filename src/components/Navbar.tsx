@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <nav className="hidden lg:flex sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] justify-center items-center lg:px-[80px]">
+      <nav className="hidden md:flex sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] justify-center items-center px-4 lg:px-[80px]">
         <div className="w-full max-w-[1920px] flex justify-between items-center">
           {/* Logo */}
           <button onClick={() => handleNavigation("/")}>
@@ -58,8 +58,8 @@ const Navbar: React.FC = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="flex items-center space-x-[80px]">
-            <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-4 lg:space-x-[80px]">
+            <div className="flex items-center space-x-4 lg:space-x-8">
               {navigationLinks.map((link) => (
                 <button
                   key={link.name}
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
       </nav>
 
       {/* Mobile Floating Menu Button */}
-      <div className="lg:hidden fixed top-6 right-6 z-50">
+      <div className="md:hidden fixed top-6 right-6 z-50">
         <div className="relative w-[60px] h-[60px]">
           {/* Background circle (bottom layer) */}
           <div className="absolute inset-0 w-full h-full rounded-full bg-[#6C8636] shadow-md" />

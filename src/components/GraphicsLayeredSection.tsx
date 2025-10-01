@@ -33,16 +33,16 @@ const GraphicsLayeredSection: React.FC = () => {
         {/* Content Container */}
         <div className="relative md:z-10  mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-            <h2 className="text-2xl md:text-5xl font-bold text-white poppins-bold text-center mb-[72px]">
-              How can you help
-            </h2>
+          <h2 className="text-2xl md:text-5xl font-bold text-white poppins-bold text-center mb-[72px]">
+            How can you help
+          </h2>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 2xl:gap-[129px]">
             {helpCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-[#EDF6F3] px-6 md:px-4 py-[82px] md:py-[164px] text-center"
+                className="bg-[#EDF6F3] px-4 py-[82px] md:py-[164px] text-center"
               >
                 <h3 className="text-2xl md:text-[40px] text-main-black mb-4 poppins-regular">
                   {card.title}

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface PillarCardProps {
-  image?: string | undefined;
+  image?: string;
   title: string;
   description: string;
   metric?: string;
@@ -16,23 +16,25 @@ const PillarCard: React.FC<PillarCardProps> = ({
   alt = "",
 }) => {
   return (
-    <div className="h-[445.43px] md:h-[944.4px] relative overflow-hidden shadow-lg group hover:shadow-xl transition-shadow duration-300">
+    <div className="relative h-[445.43px] md:h-[944.4px] overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300">
       {image && (
-        <img src={image} alt={alt} className="w-full h-full object-cover" />
+        <img
+          src={image}
+          alt={alt}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        />
       )}
 
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#000000BA]/70 via-[#000000BA]/0 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
       {/* Content overlay */}
-      <div className="absolute bottom-0 left-0 right-0 px-[18px] pb-[24px] md:pb-[60px] text-white">
+      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
         {/* Title */}
-        <h3 className="text-[20px] md:text-[40px] mb-4 poppins-semibold">
-          {title}
-        </h3>
+        <h3 className="text-xl md:text-2xl mb-3 poppins-semibold">{title}</h3>
 
         {/* Description */}
-        <p className="text-[12px] md:text-base mb-4 poppins-regular leading-relaxed">
+        <p className="text-sm md:text-base mb-4 poppins-regular leading-relaxed line-clamp-3">
           {description}
         </p>
 

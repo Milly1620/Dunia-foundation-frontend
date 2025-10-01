@@ -72,7 +72,7 @@ const DonationHeroSection: React.FC<DonationHeroSectionProps> = ({
           </div>
 
           {showImage && (
-            <img src={imageSrc} alt={imageAlt} className="md:block hidden w-auto object-cover" />
+            <img src={imageSrc} alt={imageAlt} className="md:block hidden md:w-[60%] lg:w-auto object-cover" />
           )}
           {showImage && (
             <img src={lovemobile} alt={imageAlt} className=" md:hidden block mb-10" />

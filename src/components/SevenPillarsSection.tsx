@@ -9,7 +9,11 @@ import image4 from "../assets/Image4.svg";
 const SevenPillarsSection: React.FC = () => {
   return (
     <section className="relative overflow-hidden md:z-70 md:bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] py-10 md:py-[124px] px-4 sm:px-6 lg:px-8">
-      <img src={lines} alt="Lines" className="hidden md:block absolute left-[-90px] top-[-600px]" />
+      <img
+        src={lines}
+        alt="Lines"
+        className="hidden md:block absolute left-[-90px] top-[-600px]"
+      />
       <div className="max-w-[1520px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
@@ -24,10 +28,10 @@ const SevenPillarsSection: React.FC = () => {
 
         {/* Pillars Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-4 md:mb-10">
-          {pillars.map((pillar, index) => (
+          {pillars.map((pillar) => (
             <PillarCard
               image={pillar.image}
-              key={index}
+              key={pillar.title}
               title={pillar.title}
               description={pillar.description}
               metric={pillar.metric}
