@@ -3,11 +3,12 @@ import heroImage from "../assets/hero.svg";
 import heroMini from "../assets/heromini.svg";
 import pathright from "../assets/pathright.svg";
 import pathleft from "../assets/pathleft.svg";
+import pathleftmobile from "../assets/heromobileleftpath.svg";
 import line from "../assets/Line.svg";
 
 const Hero = () => {
   return (
-    <div className="relative overflow-x-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5  md:pt-[72px] md:pb-[120px] flex justify-center items-center">
+    <div className="relative overflow-x-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5 pt-[65px] md:pt-[72px] md:pb-[120px] flex justify-center items-center">
       <div className="max-w-[1501px] md:px-5 flex flex-col md:flex-row justify-between items-center">
         <div className="block md:hidden mb-[61px] z-10">
           <img src={heroMini} alt="Hero" />
@@ -35,18 +36,15 @@ const Hero = () => {
               size="md"
               className="w-full md:w-[211.5px]"
             >
-              Get involved
+              <span className="md:hidden">Donate</span>
+              <span className="hidden md:inline">Get involved</span>
             </Button>
           </div>
         </div>
         <div className="hidden md:block">
           <img src={heroImage} alt="Hero" />
         </div>
-        <img
-          src={line}
-          alt="Line"
-          className="absolute right-[-77px]"
-        />
+        <img src={line} alt="Line" className="absolute right-[-77px]" />
         <img
           src={pathright}
           alt="Path Right"
@@ -56,6 +54,11 @@ const Hero = () => {
           src={pathleft}
           alt="Path Left"
           className="hidden md:block absolute 2xl:bottom-[130px] md:bottom-[5px] lg:left-[-337px] md:left-[-437px]"
+        />
+        <img
+          src={pathleftmobile}
+          alt="Path Left"
+          className="md:hidden block absolute left-0 top-0 "
         />
       </div>
     </div>
