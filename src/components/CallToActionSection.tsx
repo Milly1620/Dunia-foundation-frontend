@@ -43,16 +43,16 @@ function CallToActionSection({
 
   return (
     <div
-      className={`md:py-[185px] py-10 px-4 md:px-[185px] bg-primary ${className}`}
+      className={`md:py-[185px] py-[75px] px-6 md:px-[185px] bg-primary ${className}`}
     >
-      <div className="max-w-[772px] mx-auto text-center">
+      <div className="md:max-w-[772px] max-w-[342px] mx-auto text-center">
         <h2
-          className={`md:text-[40px] text-[24px] leading-[120%] poppins-semibold mb-2 ${titleClass}`}
+          className={`md:text-[40px] text-[24px] poppins-semibold mb-2 ${titleClass}`}
         >
           {title}
         </h2>
         <p
-          className={`text-[18px] mb-6 poppins-regular leading-relaxed ${descriptionClass}`}
+          className={`text-[18px] text-gray mb-6 poppins-regular ${descriptionClass}`}
         >
           {description}
         </p>
@@ -63,7 +63,7 @@ function CallToActionSection({
               variant={button.variant || "primary"}
               size={button.size || "md"}
               onClick={() => handleButtonClick(button)}
-              className={`w-[211.5px] ${button.className || ""}`}
+              className={`w-full md:w-[211.5px] ${button.className || ""}`}
             >
               {button.text}
             </Button>

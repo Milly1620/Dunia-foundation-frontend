@@ -9,10 +9,10 @@ const GetInTouchSection: React.FC = () => {
       <div className="max-w-[1240px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-[40px] text-main-black mb-2 poppins-semibold">
+          <h2 className="text-2xl md:text-[40px] text-main-black mb-2 poppins-semibold">
             Get in touch
           </h2>
-          <p className="text-[18px] text-gray max-w-2xl mx-auto poppins-regular">
+          <p className="text-base md:text-[18px] text-gray max-w-2xl mx-auto poppins-regular">
             We'll review your inquiry and reach out with the appropriate
             resources
           </p>
