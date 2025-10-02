@@ -13,7 +13,7 @@ interface HeroStatsProps {
 const HeroStats: React.FC<HeroStatsProps> = ({ stats, className = "" }) => {
   return (
     <div
-      className={`max-w-[680px] mx-auto mt-6 flex flex-wrap justify-between gap-8 md:gap-16 ${className}`}
+      className={`hidden md:flex max-w-[680px] mx-auto mt-6 flex-wrap justify-between gap-8 md:gap-16 ${className}`}
     >
       {stats.map((stat) => (
         <div key={stat.label} className="text-center">

@@ -24,7 +24,7 @@ const PageHero: React.FC<PageHeroProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`relative ${paddingBottom} pb-20 md:pt-20 pt-10 mb-[987px] ${className}`}>
+    <div className={`relative ${paddingBottom} py-[160px] md:pt-20 md:pb-[105px] ${className}`}>
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -44,8 +44,8 @@ const PageHero: React.FC<PageHeroProps> = ({
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h1 className="text-5xl poppins-bold mb-6">{title}</h1>
+        <div className="max-w-4xl mx-auto md:text-center text-white">
+          <h1 className="md:text-5xl text-4xl poppins-bold mb-6">{title}</h1>
           <p className="md:text-[18px] poppins-regular max-w-[906px] mx-auto leading-relaxed">
             {description}
           </p>

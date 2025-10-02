@@ -15,7 +15,7 @@ function DonatePage() {
       />
 
       {/* Donation Form */}
-      <div className="absolute top-[350px] left-0 right-0 z-10">
+      <div className="relative md:mb-[65px] mb-[80px] mt-[-80px] z-10 mx-6 lg:mx-0">
         <DonationForm />
       </div>
 
