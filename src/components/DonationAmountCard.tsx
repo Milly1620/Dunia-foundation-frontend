@@ -20,7 +20,7 @@ const DonationAmountCard: React.FC<DonationAmountCardProps> = ({
       type="button"
       onClick={onClick}
       className={`
-        md:px-[41px] md:py-[30.5px] px-8 py-[21px] text-center border transition-all duration-200
+        md:px-[41px] md:py-[30.5px] px-2 py-[21px] text-center border transition-all duration-200
         hover:shadow-md 
         ${
           isSelected

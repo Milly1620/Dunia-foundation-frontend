@@ -15,7 +15,7 @@ function ContactPage() {
       />
 
       <div
-        className="max-w-[853px] mx-auto flex flex-col gap-8 py-6 px-[35px] bg-white absolute top-[240px] left-0 right-0"
+        className="max-w-[853px] md:mx-auto mx-6 flex flex-col gap-8 py-6 px-[35px] bg-white relative md:mb-[65px] mb-[80px] mt-[-80px] z-10"
         style={{ boxShadow: "0px 3px 10px 0px #D7FFD866" }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
@@ -28,6 +28,7 @@ function ContactPage() {
             />
           ))}
         </div>
+
         <ContactForm border={false} />
       </div>
 
