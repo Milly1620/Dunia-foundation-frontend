@@ -44,11 +44,11 @@ const Hero = () => {
         <div className="hidden md:block">
           <img src={heroImage} alt="Hero" />
         </div>
-        <img src={line} alt="Line" className="absolute right-[-77px]" />
+        <img src={line} alt="Line" className="absolute top-0 right-[-77px]" />
         <img
           src={pathright}
           alt="Path Right"
-          className="absolute top-[25.5%] right-[-297px] md:top-[13%] lg:top-[31.5%] lg:right-[-197px] md:right-[-400px]"
+          className="absolute top-[22.5%] right-[-297px] md:top-[13%] lg:top-[31.5%] lg:right-[-197px] md:right-[-400px]"
         />
         <img
           src={pathleft}

@@ -9,12 +9,15 @@ import program6 from "../assets/program6.svg";
 import program7 from "../assets/program7.svg";
 import ProgramCard from "../components/ProgramCard";
 import CallToActionSection from "../components/CallToActionSection";
+import line from "../assets/donateline.svg";
+import mobileline from "../assets/programheroline.svg";
+
 
 function ProgramsPage() {
   return (
     <div>
       {/* Hero Section */}
-      <div className="bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px]  pb-20 ">
+      <div className="relative bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px] pb-20 md:overflow-hidden">
         <div className="max-w-4xl mx-auto text-left md:text-center">
           <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[63px]">
             Programs
@@ -29,6 +32,16 @@ function ProgramsPage() {
             and that's exactly what we're committed to creating.
           </p>
         </div>
+        <img
+          src={line}
+          alt="Separator"
+          className="hidden md:block absolute left-[27.9%] top-0"
+        />
+        <img
+          src={mobileline}
+          alt="Separator"
+          className="block md:hidden absolute left-[8.6%] top-0"
+        />
       </div>
 
       {/* First Half - Programs 1-3 */}
@@ -43,7 +56,11 @@ function ProgramsPage() {
       {/* Separator */}
       <div className="w-full">
         <img src={Path} alt="Separator" className="hidden md:block w-full" />
-        <img src={PathMobile} alt="Separator" className="block md:hidden w-full" />
+        <img
+          src={PathMobile}
+          alt="Separator"
+          className="block md:hidden w-full"
+        />
       </div>
 
       {/* Second Half - Programs 4-7 */}
