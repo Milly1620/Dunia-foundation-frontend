@@ -24,7 +24,7 @@ const PageHero: React.FC<PageHeroProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`relative ${paddingBottom} py-[160px] md:pt-20 md:pb-[105px] z-1 ${className}`}>
+    <div className={`relative ${paddingBottom} py-[160px] md:pt-20 md:pb-[105px] z-5 ${className}`}>
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
