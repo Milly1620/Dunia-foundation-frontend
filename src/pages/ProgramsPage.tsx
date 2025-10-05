@@ -16,7 +16,7 @@ function ProgramsPage() {
       {/* Hero Section */}
       <div className="bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px]  pb-20 ">
         <div className="max-w-4xl mx-auto text-left md:text-center">
-          <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[103px]">
+          <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[63px]">
             Programs
           </h1>
           <h1 className="md:text-5xl text-2xl poppins-bold text-text-black mb-4 md:mb-6">

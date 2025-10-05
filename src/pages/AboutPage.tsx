@@ -3,22 +3,23 @@ import MissionVisionCard from "../components/MissionVisionCard";
 import ValuesSection from "../components/ValuesSection";
 import Path from "../assets/programspath.svg";
 import OurTeamSection from "../components/OurTeamSection";
+import aboutpagemobilepath from "../assets/aboutpagemobilepath.svg";
 
 function AboutPage() {
   return (
     <div>
       <div className="w-full bg-gradient-to-b from-tertiary to-secondary">
-        <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[103px] pt-[18px]">
+        <h1 className="block md:hidden text-2xl poppins-bold text-primary px-4 mb-[103px] pt-[18px]">
           About
         </h1>
         <div className="relative w-full">
-          
-          <img src={Path} alt="Separator" className="w-full" />
-          <div className="max-w-4xl mx-auto text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src={Path} alt="Separator" className="hidden md:block w-full" />
+          <img src={aboutpagemobilepath} alt="Separator" className="block md:hidden w-full" />
+          <div className="hidden md:block max-w-4xl mx-auto text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <h1 className="md:text-5xl text-2xl poppins-bold mb-6">
               About Sesa Foundation
             </h1>
-            <p className="text-[18px] poppins-regular max-w-[826px] mx-auto leading-relaxed">
+            <p className="text-[18px] poppins-regular max-w-[826px] md:mx-auto leading-relaxed">
               "Sesa" means change in Twi, Ghana's most widely spoken language.
               Since our founding in 2018, we have been dedicated to creating
               positive, lasting change in communities across Ghana and Africa.
@@ -29,7 +30,7 @@ function AboutPage() {
           </div>
         </div>
 
-        <div className="pt-[61.11px] pb-[120.89px] px-6">
+        <div className="relative md:pt-[61.11px] pb-[80px] md:pb-[120.89px] px-6 mt-[-437px] md:mt-0 z-10">
           <div className="max-w-[1760px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 justify-items-center">
               <MissionVisionCard

@@ -6,12 +6,8 @@ import bgImage from "../assets/program1.svg";
 function DonatePage() {
   return (
     <div className="relative bg-secondary">
-      <div className="bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px] pb-20">
-        <div className="max-w-4xl mx-auto text-left md:text-center">
-          <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[103px]">
-            Donate
-          </h1>
-        </div>
+      <div className="block md:hidden bg-[#EDF6F3] px-4 pt-[18px] pb-[41px]">
+        <h1 className=" text-2xl poppins-bold text-primary">Donate</h1>
       </div>
       <PageHero
         title="Make a Difference Today"
