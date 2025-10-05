@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
       </nav>
 
       {/* Mobile Floating Menu Button */}
-      <div className="md:hidden fixed top-2 right-4 z-50">
+      <div className="md:hidden fixed top-2 right-4 z-[9999]">
         <div className="relative w-[60px] h-[60px]">
           {/* Background circle (bottom layer) */}
           <div className="absolute inset-0 w-full h-full rounded-full bg-[#6C8636] shadow-md" />
@@ -102,13 +102,13 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Side Drawer */}
       <div
-        className={`fixed inset-0 z-50 lg:hidden ${
+        className={`fixed inset-0 z-[9999] lg:hidden ${
           isMobileMenuOpen ? "block" : "hidden"
         }`}
       >
         {/* Backdrop */}
         <button
-          className="fixed inset-0 bg-main-black bg-opacity-50 w-full h-full"
+          className="fixed inset-0 bg-main-black/50 w-full h-full z-[9998]"
           onClick={closeMobileMenu}
           aria-label="Close menu backdrop"
           tabIndex={-1}
@@ -116,63 +116,64 @@ const Navbar: React.FC = () => {
 
         {/* Drawer */}
         <div
-          className={`fixed top-0 right-0 h-full w-full md:w-[50%] bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+          className={`fixed flex flex-col justify-between top-0 right-0 h-full p-6 pb-20 w-[60%] bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] shadow-xl transform transition-transform duration-300 ease-in-out z-[10000] ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           {/* Drawer Header */}
-          <div className="flex items-center justify-between p-6 border-b border-main-black">
-            <button
-              onClick={() => {
-                handleNavigation("/");
-                closeMobileMenu();
-              }}
-            >
-              <img src={logo} alt="Sesa Foundation" />
-            </button>
+          <div className="">
+            <div className="flex items-center justify-end mb-10">
+              <button
+                onClick={closeMobileMenu}
+                className=" hover:bg-gray-100 rounded-full transition-colors duration-200"
+                aria-label="Close menu"
+              >
+                <X className="w-8 h-8 text-main-black" />
+              </button>
+            </div>
 
-            <button
-              onClick={closeMobileMenu}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
-              aria-label="Close menu"
-            >
-              <X className="w-6 h-6 text-main-black" />
-            </button>
-          </div>
-
-          {/* Drawer Navigation */}
-          <div className="p-6">
-            <nav className="space-y-4">
-              {navigationLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => {
-                    handleNavigation(link.href);
-                    closeMobileMenu();
-                  }}
-                  className={`block poppins-medium text-base transition-colors duration-200 ${
-                    link.isActive
-                      ? "text-main-green font-medium"
-                      : "text-main-black hover:text-main-green text-base"
-                  }`}
-                >
-                  {link.name}
-                </button>
-              ))}
-              <div className="pt-4">
-                <button
+            {/* Drawer Navigation */}
+            <div>
+              <nav className="space-y-8">
+                {navigationLinks.map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => {
+                      handleNavigation(link.href);
+                      closeMobileMenu();
+                    }}
+                    className={`block poppins-medium text-base transition-colors duration-200 ${
+                      link.isActive
+                        ? "text-main-green font-medium"
+                        : "text-main-black hover:text-main-green text-base"
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                ))}
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="w-full"
                   onClick={() => {
                     handleNavigation("/donate");
                     closeMobileMenu();
                   }}
                 >
-                  <Button variant="primary" size="md" className="w-full">
-                    Donate
-                  </Button>
-                </button>
-              </div>
-            </nav>
+                  Donate
+                </Button>
+              </nav>
+            </div>
           </div>
+
+          <button
+            onClick={() => {
+              handleNavigation("/");
+              closeMobileMenu();
+            }}
+          >
+            <img src={logo} alt="Sesa Foundation" />
+          </button>
         </div>
       </div>
     </>

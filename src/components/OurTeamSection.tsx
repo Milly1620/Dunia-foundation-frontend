@@ -2,12 +2,13 @@ import ProfileCard from "./ProfileCard";
 import team1 from "../assets/team1.svg";
 import team2 from "../assets/team2.svg";
 import team3 from "../assets/team3.svg";
+import lines from "../assets/Lines.svg";
 
 
 
 const OurTeamSection = () => {
   return (
-    <div className="bg-[#E1F2ED] py-10 md:py-20 px-6 md:px-0 flex flex-col items-center justify-center">
+    <div className="relative bg-[#E1F2ED] py-10 md:py-20 px-6 md:px-0 flex flex-col items-center justify-center">
       <div className="max-w-[906px] mx-auto mb-10 md:mb-20">
         <h2 className="text-center text-5xl poppins-bold text-text-black leading-tight mb-6">
           Meet Our Team
@@ -30,6 +31,7 @@ const OurTeamSection = () => {
           ))}
         </div>
       </div>
+      <img src={lines} alt="lines" className="absolute top-0 left-0 w-full" />
     </div>
   );
 };
