@@ -24,8 +24,8 @@ const DonationAmountCard: React.FC<DonationAmountCardProps> = ({
         hover:shadow-md 
         ${
           isSelected
-            ? "bg-primary text-white border-primary"
-            : "bg-white text-gray-900 border-gray-300 hover:border-primary"
+            ? "bg-[#6C8636] text-white border-[#6C8636]"
+            : "bg-white text-gray-900 border-gray-300 hover:border-[#6C8636]"
         }
         ${className}
       `}
