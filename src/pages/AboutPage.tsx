@@ -8,13 +8,17 @@ function AboutPage() {
   return (
     <div>
       <div className="w-full bg-gradient-to-b from-tertiary to-secondary">
+        <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[103px] pt-[18px]">
+          About
+        </h1>
         <div className="relative w-full">
+          
           <img src={Path} alt="Separator" className="w-full" />
           <div className="max-w-4xl mx-auto text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <h1 className="text-5xl poppins-bold mb-6">
+            <h1 className="md:text-5xl text-2xl poppins-bold mb-6">
               About Sesa Foundation
             </h1>
-            <p className="md:text-[18px] poppins-regular max-w-[826px] mx-auto leading-relaxed">
+            <p className="text-[18px] poppins-regular max-w-[826px] mx-auto leading-relaxed">
               "Sesa" means change in Twi, Ghana's most widely spoken language.
               Since our founding in 2018, we have been dedicated to creating
               positive, lasting change in communities across Ghana and Africa.
