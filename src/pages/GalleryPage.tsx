@@ -6,12 +6,14 @@ import gallery3 from "../assets/gallery3.svg";
 import gallery4 from "../assets/gallery4.svg";
 import gallery5 from "../assets/gallery5.svg";
 import gallery6 from "../assets/gallery6.svg";
+import line from "../assets/donateline.svg";
+import mobileline from "../assets/programheroline.svg";
 
 function GalleryPage() {
   return (
     <div>
       {/* Hero Section */}
-      <div className="bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px]  pb-20 ">
+      <div className="relative bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px]  pb-20 md:overflow-hidden">
         <div className="max-w-4xl mx-auto md:text-center">
           <h1 className="block md:hidden text-2xl poppins-bold text-primary mb-[63px]">
             Gallery
@@ -25,6 +27,16 @@ function GalleryPage() {
             Ghana and Africa.
           </p>
         </div>
+        <img
+          src={line}
+          alt="programline"
+          className="hidden md:block absolute left-[31.9%] top-0"
+        />
+        <img
+          src={mobileline}
+          alt="programmobileline"
+          className="block md:hidden absolute left-[8.6%] top-0 z-1"
+        />
       </div>
 
       <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">

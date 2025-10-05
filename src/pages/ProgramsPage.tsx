@@ -34,12 +34,12 @@ function ProgramsPage() {
         </div>
         <img
           src={line}
-          alt="Separator"
+          alt="programline"
           className="hidden md:block absolute left-[27.9%] top-0"
         />
         <img
           src={mobileline}
-          alt="Separator"
+          alt="programmobileline"
           className="block md:hidden absolute left-[8.6%] top-0"
         />
       </div>
