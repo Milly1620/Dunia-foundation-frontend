@@ -32,7 +32,7 @@ function AboutPage() {
 
         <div className="relative md:pt-[61.11px] pb-[80px] md:pb-[120.89px] px-6 mt-[-437px] md:mt-0 z-10">
           <div className="max-w-[1760px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 justify-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 justify-items-center md:h-[466px] h-full">
               <MissionVisionCard
                 variant="mission"
                 title="Our Mission"

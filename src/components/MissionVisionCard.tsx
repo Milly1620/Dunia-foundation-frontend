@@ -18,15 +18,14 @@ const MissionVisionCard: React.FC<MissionVisionCardProps> = ({
   return (
     <div
       className={`
-        w-full  aspect-square h-[466px]
+        w-full h-full flex flex-col justify-center items-center p-6 md:p-1 lg:p-0 md:text-center
         ${isMission ? "bg-white" : "bg-primary"}
         ${className}
       `}
     >
-      <div className="h-full flex flex-col justify-center items-center">
         <h3
           className={`
-            text-[48px] poppins-bold mb-6 text-center leading-tight
+            md:text-[48px] text-[32px] poppins-bold mb-6 leading-tight
             ${isMission ? "text-gray-800" : "text-white"}
           `}
         >
@@ -35,13 +34,12 @@ const MissionVisionCard: React.FC<MissionVisionCardProps> = ({
         <p
           className={`
             max-w-[719px]
-            text-[18px] poppins-regular text-center leading-relaxed
+            md:text-[18px] poppins-regular leading-relaxed
             ${isMission ? "text-gray-700" : "text-white"}
           `}
         >
           {description}
         </p>
-      </div>
     </div>
   );
 };
