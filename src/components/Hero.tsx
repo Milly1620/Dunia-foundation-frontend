@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 import heroImage from "../assets/hero.svg";
 import heroMini from "../assets/heromini.svg";
 import pathright from "../assets/pathright.svg";
@@ -7,6 +8,8 @@ import pathleftmobile from "../assets/heromobileleftpath.svg";
 import line from "../assets/Line.svg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative overflow-x-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5 pt-[65px] md:pt-[72px] md:pb-[120px] flex justify-center items-center">
       <div className="max-w-[1501px] md:px-5 flex flex-col md:flex-row justify-between items-center">
@@ -28,6 +31,7 @@ const Hero = () => {
               variant="secondary"
               size="md"
               className="hidden md:block md:w-[211.5px]"
+              onClick={() => navigate("/programs")}
             >
               Discover our mission
             </Button>
@@ -35,6 +39,7 @@ const Hero = () => {
               variant="primary"
               size="md"
               className="w-full md:w-[211.5px]"
+              onClick={() => navigate("/programs")}
             >
               <span className="md:hidden">Donate</span>
               <span className="hidden md:inline">Get involved</span>

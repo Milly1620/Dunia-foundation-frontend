@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import Button from "./Button";
 import ToggleButtonGroup from "./ToggleButtonGroup";
 import DonationAmountCard from "./DonationAmountCard";
@@ -7,9 +8,10 @@ import SelectField from "./SelectField";
 import TextareaField from "./TextareaField";
 import CheckboxField from "./CheckboxField";
 import { useNavigate } from "react-router-dom";
+import { donationAPI, type DonationPayload } from "../utils/api";
 
-interface DonationData {
-  donationType: string;
+interface DonationFormData {
+  donationType: 'one-time' | 'monthly';
   selectedAmount: string;
   customAmount: string;
   selectedProgram: string;
@@ -24,45 +26,94 @@ interface DonationData {
 
 const DonationForm: React.FC = () => {
   const navigate = useNavigate();
-  const [donationData, setDonationData] = useState<DonationData>({
-    donationType: "one-time",
-    selectedAmount: "",
-    customAmount: "",
-    selectedProgram: "",
-    isAnonymous: false,
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    country: "Ghana",
-    notes: "",
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{type: 'success' | 'error', message: string} | null>(null);
+
+  const {
+    control,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<DonationFormData>({
+    defaultValues: {
+      donationType: "one-time",
+      selectedAmount: "",
+      customAmount: "",
+      selectedProgram: "",
+      isAnonymous: false,
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      country: "Ghana",
+      notes: "",
+    },
   });
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value, type } = e.target;
-    setDonationData((prev) => ({
-      ...prev,
-      [name]:
-        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
-    }));
-  };
+  const watchedValues = watch();
 
   const handleAmountSelect = (amount: string) => {
-    setDonationData((prev) => ({
-      ...prev,
-      selectedAmount: amount,
-      customAmount: "", // Clear custom amount when selecting preset
-    }));
+    setValue("selectedAmount", amount);
+    setValue("customAmount", ""); // Clear custom amount when selecting preset
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Donation submitted:", donationData);
-    // Handle donation submission here
+  const onSubmit = async (data: DonationFormData) => {
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+
+    try {
+      // Determine the final amount (either selected preset or custom)
+      const finalAmount = data.customAmount ?
+        parseFloat(data.customAmount) :
+        parseFloat(data.selectedAmount.replace('$', ''));
+
+      // Map program selection to program_id (you may need to adjust this mapping)
+      const programIdMapping: Record<string, number> = {
+        'where-needed': 1,
+        'education': 2,
+        'healthcare': 3,
+        'wash': 4,
+        'agriculture': 5,
+        'women-youth': 6,
+        'community': 7,
+        'emergency': 8,
+      };
+
+      const payload: DonationPayload = {
+        amount: finalAmount,
+        country: data.country,
+        donation_type: data.donationType,
+        email: data.email,
+        first_name: data.firstName,
+        is_anonymous: data.isAnonymous,
+        last_name: data.lastName,
+        notes: data.notes || undefined,
+        phone_number: data.phone,
+        program_id: programIdMapping[data.selectedProgram] || 1,
+      };
+
+      await donationAPI.create(payload);
+
+      setSubmitMessage({
+        type: 'success',
+        message: 'Thank you for your donation! Your contribution has been received successfully.'
+      });
+
+      // Reset form or redirect after successful submission
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
+
+    } catch (error) {
+      console.error('Donation submission error:', error);
+      setSubmitMessage({
+        type: 'error',
+        message: 'Sorry, there was an error processing your donation. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,19 +121,33 @@ const DonationForm: React.FC = () => {
       className="max-w-[853px] mx-auto bg-white py-6 px-[35px]"
       style={{ boxShadow: "0px 3px 10px 0px #D7FFD866" }}
     >
-      <form onSubmit={handleSubmit} className="space-y-8">
+      {submitMessage && (
+        <div className={`mb-4 p-4 rounded-md ${
+          submitMessage.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+        }`}>
+          {submitMessage.message}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Donation Type Section */}
         <div className="space-y-6">
           <h2 className="md:text-[35px] text-[24px] poppins-semibold text-primary border-b border-[#D4D4D8] pb-4">
             Donation Type
           </h2>
 
-          <ToggleButtonGroup
-            options={donationOptions}
-            value={donationData.donationType}
-            onChange={(value) =>
-              setDonationData((prev) => ({ ...prev, donationType: value }))
-            }
+          <Controller
+            name="donationType"
+            control={control}
+            render={({ field }) => (
+              <ToggleButtonGroup
+                options={donationOptions}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
           />
 
           {/* Donation Amount Cards */}
@@ -92,7 +157,7 @@ const DonationForm: React.FC = () => {
                 key={card.amount}
                 amount={card.amount}
                 description={card.description}
-                isSelected={donationData.selectedAmount === card.amount}
+                isSelected={watchedValues.selectedAmount === card.amount}
                 onClick={() => handleAmountSelect(card.amount)}
               />
             ))}
@@ -102,30 +167,48 @@ const DonationForm: React.FC = () => {
         {/* Custom Amount & Program Selection */}
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <InputField
-              label="Custom amount"
+            <Controller
               name="customAmount"
-              value={donationData.customAmount}
-              onChange={handleInputChange}
-              placeholder="Enter custom amount"
-              prefix="$"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  label="Custom amount"
+                  name={field.name}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Enter custom amount"
+                  prefix="$"
+                />
+              )}
             />
 
-            <SelectField
-              label="Choose program to support"
+            <Controller
               name="selectedProgram"
-              value={donationData.selectedProgram}
-              onChange={handleInputChange}
-              options={programOptions}
-              placeholder="Where needed most"
+              control={control}
+              render={({ field }) => (
+                <SelectField
+                  label="Choose program to support"
+                  name={field.name}
+                  value={field.value}
+                  onChange={field.onChange}
+                  options={programOptions}
+                  placeholder="Where needed most"
+                />
+              )}
             />
           </div>
 
-          <CheckboxField
-            label="Anonymous donations"
+          <Controller
             name="isAnonymous"
-            checked={donationData.isAnonymous}
-            onChange={handleInputChange}
+            control={control}
+            render={({ field }) => (
+              <CheckboxField
+                label="Anonymous donations"
+                name={field.name}
+                checked={field.value}
+                onChange={field.onChange}
+              />
+            )}
           />
         </div>
 
@@ -136,61 +219,110 @@ const DonationForm: React.FC = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <InputField
-              label="First name"
+            <Controller
               name="firstName"
-              value={donationData.firstName}
-              onChange={handleInputChange}
-              placeholder="Enter your first name"
-              required
+              control={control}
+              rules={{ required: "First name is required" }}
+              render={({ field }) => (
+                <InputField
+                  label="First name"
+                  name={field.name}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Enter your first name"
+                  required
+                  error={errors.firstName?.message}
+                />
+              )}
             />
 
-            <InputField
-              label="Last name"
+            <Controller
               name="lastName"
-              value={donationData.lastName}
-              onChange={handleInputChange}
-              placeholder="Enter your last name"
-              required
+              control={control}
+              rules={{ required: "Last name is required" }}
+              render={({ field }) => (
+                <InputField
+                  label="Last name"
+                  name={field.name}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Enter your last name"
+                  required
+                  error={errors.lastName?.message}
+                />
+              )}
             />
 
-            <InputField
-              label="Email"
+            <Controller
               name="email"
-              type="email"
-              value={donationData.email}
-              onChange={handleInputChange}
-              placeholder="Enter your email"
-              required
+              control={control}
+              rules={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address"
+                }
+              }}
+              render={({ field }) => (
+                <InputField
+                  label="Email"
+                  name={field.name}
+                  type="email"
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Enter your email"
+                  required
+                  error={errors.email?.message}
+                />
+              )}
             />
 
-            <InputField
-              label="Phone number"
+            <Controller
               name="phone"
-              type="tel"
-              value={donationData.phone}
-              onChange={handleInputChange}
-              placeholder="Enter your phone number"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  label="Phone number"
+                  name={field.name}
+                  type="tel"
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Enter your phone number"
+                  error={errors.phone?.message}
+                />
+              )}
             />
 
             <div className="md:col-span-2">
-              <SelectField
-                label="Country"
+              <Controller
                 name="country"
-                value={donationData.country}
-                onChange={handleInputChange}
-                options={countryOptions}
+                control={control}
+                render={({ field }) => (
+                  <SelectField
+                    label="Country"
+                    name={field.name}
+                    value={field.value}
+                    onChange={field.onChange}
+                    options={countryOptions}
+                  />
+                )}
               />
             </div>
 
             <div className="md:col-span-2">
-              <TextareaField
-                label="Notes (Optional)"
+              <Controller
                 name="notes"
-                value={donationData.notes}
-                onChange={handleInputChange}
-                placeholder="Enter item description"
-                rows={4}
+                control={control}
+                render={({ field }) => (
+                  <TextareaField
+                    label="Notes (Optional)"
+                    name={field.name}
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="Enter item description"
+                    rows={4}
+                  />
+                )}
               />
             </div>
           </div>
@@ -203,12 +335,18 @@ const DonationForm: React.FC = () => {
             variant="secondary"
             size="lg"
             onClick={() => navigate("/")}
+            disabled={isSubmitting}
           >
             Go to home
           </Button>
 
-          <Button type="submit" variant="primary" size="lg">
-            Make Donation
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Processing..." : "Make Donation"}
           </Button>
         </div>
       </form>

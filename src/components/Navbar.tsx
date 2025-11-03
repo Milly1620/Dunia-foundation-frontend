@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logomain.svg";
 import { X, Menu } from "lucide-react";
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,8 +53,15 @@ const Navbar: React.FC = () => {
       <nav className="hidden md:flex sticky top-0 z-50 bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] h-[96px] justify-center items-center px-4 lg:px-[80px]">
         <div className="w-full max-w-[1920px] flex justify-between items-center">
           {/* Logo */}
-          <button onClick={() => handleNavigation("/")}>
+          <button
+            onClick={() => handleNavigation("/")}
+            className="flex items-start gap-x-3"
+          >
             <img src={logo} alt="Sesa Foundation" />
+            <div className="text-left md:text-[30.58px] inter-bold text-text-black">
+              <h1 className="mb-0 leading-2">Dunia</h1>
+              <h1>Impact Foundation</h1>
+            </div>
           </button>
 
           {/* Desktop Navigation */}

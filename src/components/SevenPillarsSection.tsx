@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import PillarCard from "./PillarCard";
 import lines from "../assets/Lines.svg";
 import image1 from "../assets/Image1.svg";
@@ -7,6 +8,8 @@ import image3 from "../assets/Image3.svg";
 import image4 from "../assets/Image4.svg";
 
 const SevenPillarsSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative overflow-hidden md:z-70 md:bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] py-10 md:py-[124px] px-4 sm:px-6 lg:px-8">
       <img
@@ -42,12 +45,12 @@ const SevenPillarsSection: React.FC = () => {
 
         {/* Learn More Link */}
         <div className="text-center md:text-right">
-          <a
-            href="#"
+          <button
+            onClick={() => navigate("/programs")}
             className="inline-flex items-center text-main-black hover:text-main-green transition-colors duration-200 poppins-medium"
           >
             Learn more...
-          </a>
+          </button>
         </div>
       </div>
     </section>

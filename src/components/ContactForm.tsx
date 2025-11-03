@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import Button from "./Button";
+import { contactAPI, type ContactPayload } from "../utils/api";
 
-interface FormData {
+interface ContactFormData {
   name: string;
   email: string;
   subject: string;
@@ -9,34 +11,54 @@ interface FormData {
 }
 
 const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ border = true, className = "" }) => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{type: 'success' | 'error', message: string} | null>(null);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    defaultValues: {
       name: "",
       email: "",
       subject: "",
       message: "",
-    });
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+
+    try {
+      const payload: ContactPayload = {
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      };
+
+      await contactAPI.sendMessage(payload);
+
+      setSubmitMessage({
+        type: 'success',
+        message: 'Thank you for your message! We\'ll get back to you soon.'
+      });
+
+      // Reset form after successful submission
+      reset();
+
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      setSubmitMessage({
+        type: 'error',
+        message: 'Sorry, there was an error sending your message. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -45,7 +67,17 @@ const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ borde
         border ? "border border-border py-6 px-[35px]" : ""
       }`}
     >
-      <form onSubmit={handleSubmit} className="space-y-6">
+      {submitMessage && (
+        <div className={`mb-6 p-4 rounded-md ${
+          submitMessage.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+        }`}>
+          {submitMessage.message}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Name Field */}
         <div>
           <label
@@ -57,13 +89,15 @@ const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ borde
           <input
             type="text"
             id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
+            {...register("name", { required: "Name is required" })}
             placeholder="Enter your name"
-            className="w-full px-4 py-3 border border-input focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular"
-            required
+            className={`w-full px-4 py-3 border ${
+              errors.name ? 'border-red-500' : 'border-input'
+            } focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular`}
           />
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+          )}
         </div>
 
         {/* Email Field */}
@@ -77,13 +111,21 @@ const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ borde
           <input
             type="email"
             id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Invalid email address"
+              }
+            })}
             placeholder="Enter your email"
-            className="w-full px-4 py-3 border border-input focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular"
-            required
+            className={`w-full px-4 py-3 border ${
+              errors.email ? 'border-red-500' : 'border-input'
+            } focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular`}
           />
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+          )}
         </div>
 
         {/* Subject Field */}
@@ -97,13 +139,15 @@ const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ borde
           <input
             type="text"
             id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleInputChange}
+            {...register("subject", { required: "Subject is required" })}
             placeholder="Enter subject"
-            className="w-full px-4 py-3 border border-input focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular"
-            required
+            className={`w-full px-4 py-3 border ${
+              errors.subject ? 'border-red-500' : 'border-input'
+            } focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular`}
           />
+          {errors.subject && (
+            <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>
+          )}
         </div>
 
         {/* Message Field */}
@@ -116,14 +160,16 @@ const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ borde
           </label>
           <textarea
             id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
+            {...register("message", { required: "Message is required" })}
             placeholder="Write your message"
             rows={5}
-            className="w-full px-4 py-3 border border-input focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular resize-vertical"
-            required
+            className={`w-full px-4 py-3 border ${
+              errors.message ? 'border-red-500' : 'border-input'
+            } focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors duration-200 poppins-regular resize-vertical`}
           />
+          {errors.message && (
+            <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+          )}
         </div>
 
         {/* Submit Button */}
@@ -133,8 +179,9 @@ const ContactForm: React.FC<{ border?: boolean, className?: string }> = ({ borde
             variant="primary"
             size="lg"
             className="px-8 py-3"
+            disabled={isSubmitting}
           >
-            Send message
+            {isSubmitting ? "Sending..." : "Send message"}
           </Button>
         </div>
       </form>

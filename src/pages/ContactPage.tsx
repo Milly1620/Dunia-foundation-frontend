@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ContactCard from "../components/ContactCard";
 import ContactForm from "../components/ContactForm";
 import DonationHeroSection from "../components/DonationHeroSection";
@@ -8,6 +9,8 @@ import line from "../assets/donationline.svg";
 import lines from "../assets/Lines.svg";
 
 function ContactPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="relative bg-secondary overflow-hidden">
       <div className="block md:hidden bg-[#EDF6F3] px-4 md:px-0 md:py-20 pt-[18px] pb-21">
@@ -76,7 +79,7 @@ function ContactPage() {
       />
 
       <div className="md:block hidden">
-        <DonationHeroSection />
+        <DonationHeroSection onButtonClick={() => navigate("/programs")} />
       </div>
     </div>
   );

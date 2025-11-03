@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import DonationHeroSection from "./DonationHeroSection";
 import graphics from "../assets/Path.svg";
 import giraffe from "../assets/girrafe.svg";
 
 const GraphicsLayeredSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative md:z-80 bg-[#D8EEE7]">
       {/* Top Graphics Section */}
@@ -50,7 +53,10 @@ const GraphicsLayeredSection: React.FC = () => {
                 <p className=" text-gray mb-6 poppins-regular leading-relaxed text-base md:text-[18px]">
                   {card.description}
                 </p>
-                <button className="text-main-black inter-medium text-base md:text-[18px]">
+                <button
+                  className="text-main-black inter-medium text-base md:text-[18px] hover:text-main-green transition-colors duration-200"
+                  onClick={() => navigate("/programs")}
+                >
                   {card.link}
                 </button>
               </div>
