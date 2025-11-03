@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <button
             onClick={() => handleNavigation("/")}
-            className="flex items-start gap-x-3"
+            className="flex items-start gap-x-3 cursor-pointer"
           >
             <img src={logo} alt="Sesa Foundation" />
             <div className="text-left md:text-[30.58px] inter-bold text-text-black">
@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                 <button
                   key={link.name}
                   onClick={() => handleNavigation(link.href)}
-                  className={`poppins-medium transition-colors duration-200 ${
+                  className={`poppins-medium transition-colors duration-200 cursor-pointer ${
                     link.isActive
                       ? "text-main-green text-[18px]"
                       : "text-main-black hover:text-main-green text-base"

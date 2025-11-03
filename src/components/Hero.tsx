@@ -39,7 +39,7 @@ const Hero = () => {
               variant="primary"
               size="md"
               className="w-full md:w-[211.5px]"
-              onClick={() => navigate("/programs")}
+              onClick={() => navigate("/donate")}
             >
               <span className="md:hidden">Donate</span>
               <span className="hidden md:inline">Get involved</span>
