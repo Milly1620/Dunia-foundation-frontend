@@ -17,9 +17,6 @@ const Navbar: React.FC = () => {
   };
 
   const handleNavigation = (href: string) => {
-    // Scroll to top first
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    // Then navigate
     navigate(href);
   };
 
@@ -57,7 +54,7 @@ const Navbar: React.FC = () => {
             onClick={() => handleNavigation("/")}
             className="flex items-start gap-x-3 cursor-pointer"
           >
-            <img src={logo} alt="Sesa Foundation" />
+            <img src={logo} alt="Dunia Impact Foundation" />
             <div className="text-left md:text-[30.58px] inter-bold text-text-black">
               <h1 className="mb-0 leading-2">Dunia</h1>
               <h1>Impact Foundation</h1>
@@ -179,7 +176,7 @@ const Navbar: React.FC = () => {
               closeMobileMenu();
             }}
           >
-            <img src={logo} alt="Sesa Foundation" />
+            <img src={logo} alt="Dunia Impact Foundation" />
           </button>
         </div>
       </div>

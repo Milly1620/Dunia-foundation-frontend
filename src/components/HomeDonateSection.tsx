@@ -23,12 +23,12 @@ const HomeDonateSection = () => {
           in communities across Africa. Every contribution, big or small, makes
           a real difference.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+        <div className="relative z-80 flex flex-col sm:flex-row gap-4 items-center justify-center ">
           <Button
             variant={"primary"}
             size={"md"}
             onClick={() => handleNavigation()}
-            className={`w-full md:w-[211.5px] border border-primary `}
+            className={`w-full md:w-[211.5px] border border-primary cursor-pointer`}
           >
             Donate today
           </Button>

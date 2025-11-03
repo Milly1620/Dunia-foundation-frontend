@@ -26,10 +26,10 @@ function ProgramsPage() {
             Creating Lasting Change in Communities
           </h1>
           <p className="text-base md:text-[18px] poppins-regular text-gray max-w-[906px] mx-auto leading-relaxed">
-            Sesa Foundation empowers communities across Ghana and Africa through
-            comprehensive development programs in education, healthcare, clean
-            water access, and economic empowerment. 'Sesa' means change in Twi,
-            and that's exactly what we're committed to creating.
+            Dunia Impact Foundation empowers communities across Ghana and Africa
+            through comprehensive development programs in education, healthcare,
+            clean water access, and economic empowerment. 'Sesa' means change in
+            Twi, and that's exactly what we're committed to creating.
           </p>
         </div>
         <img

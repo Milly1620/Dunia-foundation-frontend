@@ -4,12 +4,12 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: "info@sesafoundation.com",
+    details: "info@duniaimpactfoundation.com",
   },
   {
     icon: Phone,
     title: "Call Us",
-    details: "+233 24 123 4567",
+    details: ["+233 26 225 1826", "+233 54 866 5634"],
   },
   {
     icon: LocateIcon,

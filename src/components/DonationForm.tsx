@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Button from "./Button";
 import ToggleButtonGroup from "./ToggleButtonGroup";
@@ -31,6 +31,7 @@ const DonationForm: React.FC = () => {
   const [submitMessage, setSubmitMessage] = useState<{type: 'success' | 'error', message: string} | null>(null);
   const [programs, setPrograms] = useState<Program[]>([]);
   const [loadingPrograms, setLoadingPrograms] = useState(true);
+  const errorMessageRef = useRef<HTMLDivElement>(null);
 
   const {
     control,
@@ -144,12 +145,36 @@ const DonationForm: React.FC = () => {
         throw new Error(paystackData.message || 'Failed to initialize payment');
       }
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Donation submission error:', error);
+
+      // Parse API error response
+      let errorMessage = 'Sorry, there was an error processing your donation. Please try again.';
+
+      if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as { response?: { data?: { detail?: string; message?: string } } };
+        if (axiosError.response?.data?.detail) {
+          // Handle specific API error format: {"detail": "Failed to create donation: Donation amount must be greater than 0"}
+          errorMessage = axiosError.response.data.detail.replace('Failed to create donation: ', '');
+        } else if (axiosError.response?.data?.message) {
+          errorMessage = axiosError.response.data.message;
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+
       setSubmitMessage({
         type: 'error',
-        message: 'Sorry, there was an error processing your donation. Please try again.'
+        message: errorMessage
       });
+
+      // Scroll to error message
+      setTimeout(() => {
+        errorMessageRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 100);
     } finally {
       setIsSubmitting(false);
     }
@@ -161,11 +186,14 @@ const DonationForm: React.FC = () => {
       style={{ boxShadow: "0px 3px 10px 0px #D7FFD866" }}
     >
       {submitMessage && (
-        <div className={`mb-4 p-4 rounded-md ${
-          submitMessage.type === 'success'
-            ? 'bg-green-50 text-green-800 border border-green-200'
-            : 'bg-red-50 text-red-800 border border-red-200'
-        }`}>
+        <div
+          ref={errorMessageRef}
+          className={`mb-4 p-4 rounded-md ${
+            submitMessage.type === 'success'
+              ? 'bg-green-50 text-green-800 border border-green-200'
+              : 'bg-red-50 text-red-800 border border-red-200'
+          }`}
+        >
           {submitMessage.message}
         </div>
       )}

@@ -6,11 +6,14 @@ import ProgramsPage from "./pages/ProgramsPage";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import DonatePage from "./pages/DonatePage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -19,6 +22,7 @@ function App() {
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="donate" element={<DonatePage />} />
+          <Route path="donate/verify" element={<PaymentSuccessPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

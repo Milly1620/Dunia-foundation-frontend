@@ -21,10 +21,10 @@ const Hero = () => {
             Creating Lasting Change in Communities
           </h1>
           <p className="poppins-regular lg:text-[18px] text-[16px] leading-[28.8px] text-gray mb-5 md:mb-6">
-            Sesa Foundation empowers communities across Ghana and Africa through
-            comprehensive development programs in education, healthcare, clean
-            water access, and economic empowerment. "Sesa" means change in Twi,
-            and that's exactly what we're committed to creating.
+            Dunia Impact Foundation empowers communities across Ghana and Africa
+            through comprehensive development programs in education, healthcare,
+            clean water access, and economic empowerment. "Sesa" means change in
+            Twi, and that's exactly what we're committed to creating.
           </p>
           <div className="flex items-center md:space-x-4">
             <Button

@@ -30,10 +30,6 @@ function CallToActionSection({
   const navigate = useNavigate();
 
   const handleButtonClick = (button: CTAButton) => {
-    // Scroll to top first
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // Then navigate if href is provided
     if (button.href) {
       navigate(button.href);
     } else if (button.onClick) {

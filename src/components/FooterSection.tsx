@@ -11,16 +11,16 @@ const FooterSection: React.FC = () => {
           {/* Logo and Description */}
           <div className="space-y-8">
             <div className="flex items-end gap-x-3">
-              <img src={footerLogo} alt="Sesa Foundation" />
+              <img src={footerLogo} alt="Dunia Impact Foundation" />
               <div className="text-left md:text-[30.58px] inter-bold text-text-black">
                 <h1 className="mb-0 leading-2">Dunia</h1>
                 <h1>Impact Foundation</h1>
               </div>
             </div>
             <p className="md:w-[518px] text-main-black poppins-regular leading-relaxed capitalize">
-              Sesa Foundation is committed to driving positive social change
-              through comprehensive community development initiatives across
-              Ghana and Africa.
+              Dunia Impact Foundation is committed to driving positive social
+              change through comprehensive community development initiatives
+              across Ghana and Africa.
             </p>
           </div>
 
@@ -37,17 +37,17 @@ const FooterSection: React.FC = () => {
   );
 };
 const quickLinks = [
-  { name: "About Us", href: "#" },
-  { name: "Our Mission", href: "#" },
-  { name: "Our Team", href: "#" },
-  { name: "Careers", href: "#" },
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
+  { name: "Programs", href: "/programs" },
+  { name: "Gallery", href: "/gallery" },
 ];
 
 const support = [
-  { name: "Donate", href: "#" },
-  { name: "Fundraise", href: "#" },
-  { name: "Partnership", href: "#" },
-  { name: "Contact Us", href: "#" },
+  { name: "Donate", href: "/donate" },
+  { name: "Fundraise", href: "/contact" },
+  { name: "Partnership", href: "/contact" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default FooterSection;
