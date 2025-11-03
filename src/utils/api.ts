@@ -47,13 +47,36 @@ export interface ContactPayload {
   subject: string;
 }
 
+export interface Program {
+  id: number;
+  name: string;
+  description: string;
+  amount: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string | null;
+}
+
+export interface PaystackResponse {
+  success: boolean;
+  message: string;
+  donation_id: number;
+  payment_reference: string;
+  authorization_url: string;
+  access_code: string;
+}
+
 // API endpoints
 export const donationAPI = {
-  create: (data: DonationPayload) => api.post("/donations/", data),
+  create: (data: DonationPayload) => api.post<PaystackResponse>("/donations/", data),
 };
 
 export const contactAPI = {
   sendMessage: (data: ContactPayload) => api.post("/contact/", data),
+};
+
+export const programsAPI = {
+  getAll: () => api.get<Program[]>("/programs/"),
 };
 
 export default api;

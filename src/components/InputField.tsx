@@ -10,6 +10,8 @@ interface InputFieldProps {
   required?: boolean;
   prefix?: string;
   className?: string;
+  error?: string;
+  disabled?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -22,6 +24,8 @@ const InputField: React.FC<InputFieldProps> = ({
   required = false,
   prefix,
   className = "",
+  error,
+  disabled = false,
 }) => {
   return (
     <div className={`space-y-2 ${className}`}>
@@ -45,14 +49,20 @@ const InputField: React.FC<InputFieldProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           required={required}
+          disabled={disabled}
           className={`
-            w-full px-4 py-3 border border-[#D4D4D8]
+            w-full px-4 py-3 border transition-colors duration-200 poppins-regular
+            ${error ? 'border-red-500' : 'border-[#D4D4D8]'}
+            ${disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
             focus:ring-2 focus:ring-primary focus:border-transparent
-            outline-none transition-colors duration-200 poppins-regular
+            outline-none
             ${prefix ? "pl-8" : ""}
           `}
         />
       </div>
+      {error && (
+        <p className="text-sm text-red-600">{error}</p>
+      )}
     </div>
   );
 };

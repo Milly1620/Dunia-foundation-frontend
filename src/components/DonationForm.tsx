@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Button from "./Button";
 import ToggleButtonGroup from "./ToggleButtonGroup";
@@ -8,13 +8,13 @@ import SelectField from "./SelectField";
 import TextareaField from "./TextareaField";
 import CheckboxField from "./CheckboxField";
 import { useNavigate } from "react-router-dom";
-import { donationAPI, type DonationPayload } from "../utils/api";
+import { donationAPI, programsAPI, type DonationPayload, type Program } from "../utils/api";
 
 interface DonationFormData {
   donationType: 'one-time' | 'monthly';
   selectedAmount: string;
   customAmount: string;
-  selectedProgram: string;
+  selectedProgram: string; // This will store the program ID as string
   isAnonymous: boolean;
   firstName: string;
   lastName: string;
@@ -24,10 +24,13 @@ interface DonationFormData {
   notes: string;
 }
 
+
 const DonationForm: React.FC = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{type: 'success' | 'error', message: string} | null>(null);
+  const [programs, setPrograms] = useState<Program[]>([]);
+  const [loadingPrograms, setLoadingPrograms] = useState(true);
 
   const {
     control,
@@ -53,10 +56,41 @@ const DonationForm: React.FC = () => {
 
   const watchedValues = watch();
 
+  // Fetch programs on component mount
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        setLoadingPrograms(true);
+        const response = await programsAPI.getAll();
+        // Filter only active programs
+        const activePrograms = response.data.filter(program => program.is_active);
+        setPrograms(activePrograms);
+      } catch (error) {
+        console.error('Failed to fetch programs:', error);
+        // Fallback to empty array if fetch fails
+        setPrograms([]);
+      } finally {
+        setLoadingPrograms(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
+
+  // Generate program options from fetched programs
+  const programOptions = [
+    { value: "", label: "Where needed most" }, // Default option
+    ...programs.map(program => ({
+      value: program.id.toString(),
+      label: program.name
+    }))
+  ];
+
   const handleAmountSelect = (amount: string) => {
     setValue("selectedAmount", amount);
     setValue("customAmount", ""); // Clear custom amount when selecting preset
   };
+
 
   const onSubmit = async (data: DonationFormData) => {
     setIsSubmitting(true);
@@ -65,20 +99,18 @@ const DonationForm: React.FC = () => {
     try {
       // Determine the final amount (either selected preset or custom)
       const finalAmount = data.customAmount ?
-        parseFloat(data.customAmount) :
-        parseFloat(data.selectedAmount.replace('$', ''));
+        Number.parseFloat(data.customAmount) :
+        Number.parseFloat(data.selectedAmount.replace('$', ''));
 
-      // Map program selection to program_id (you may need to adjust this mapping)
-      const programIdMapping: Record<string, number> = {
-        'where-needed': 1,
-        'education': 2,
-        'healthcare': 3,
-        'wash': 4,
-        'agriculture': 5,
-        'women-youth': 6,
-        'community': 7,
-        'emergency': 8,
-      };
+      // Use the selected program ID directly, or default to first available program
+      let programId: number;
+      if (data.selectedProgram) {
+        programId = Number.parseInt(data.selectedProgram, 10);
+      } else if (programs.length > 0) {
+        programId = programs[0].id;
+      } else {
+        programId = 1; // Fallback to 1 if no programs available
+      }
 
       const payload: DonationPayload = {
         amount: finalAmount,
@@ -90,20 +122,27 @@ const DonationForm: React.FC = () => {
         last_name: data.lastName,
         notes: data.notes || undefined,
         phone_number: data.phone,
-        program_id: programIdMapping[data.selectedProgram] || 1,
+        program_id: programId,
       };
 
-      await donationAPI.create(payload);
+      // Initialize payment with backend
+      const response = await donationAPI.create(payload);
+      const paystackData = response.data;
 
-      setSubmitMessage({
-        type: 'success',
-        message: 'Thank you for your donation! Your contribution has been received successfully.'
-      });
+      if (paystackData.success) {
+        // Show success message briefly before redirecting
+        setSubmitMessage({
+          type: 'success',
+          message: 'Redirecting to payment gateway...'
+        });
 
-      // Reset form or redirect after successful submission
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
+        // Redirect to Paystack checkout page
+        setTimeout(() => {
+          globalThis.location.href = paystackData.authorization_url;
+        }, 1500);
+      } else {
+        throw new Error(paystackData.message || 'Failed to initialize payment');
+      }
 
     } catch (error) {
       console.error('Donation submission error:', error);
@@ -192,7 +231,8 @@ const DonationForm: React.FC = () => {
                   value={field.value}
                   onChange={field.onChange}
                   options={programOptions}
-                  placeholder="Where needed most"
+                  placeholder={loadingPrograms ? "Loading programs..." : "Where needed most"}
+                  disabled={loadingPrograms}
                 />
               )}
             />
@@ -368,16 +408,6 @@ const amountCards = [
   { amount: "$1000", description: "Clean water access" },
 ];
 
-const programOptions = [
-  { value: "where-needed", label: "Where needed most" },
-  { value: "education", label: "Education & Literacy" },
-  { value: "healthcare", label: "Healthcare Access" },
-  { value: "wash", label: "WASH Projects" },
-  { value: "agriculture", label: "Agricultural Development" },
-  { value: "women-youth", label: "Women & Youth Empowerment" },
-  { value: "community", label: "Community Development" },
-  { value: "emergency", label: "Emergency Response" },
-];
 
 const countryOptions = [
   { value: "Ghana", label: "Ghana" },
