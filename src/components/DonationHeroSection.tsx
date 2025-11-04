@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import graphics from "../assets/Path.svg";
+import graphics from "../assets/PATH.svg";
 import graphicsmobile from "../assets/lovepathmobile.svg";
 import love from "../assets/love.svg";
 import lovemobile from "../assets/lovemobile.svg";
