@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import DonationHeroSection from "./DonationHeroSection";
 import graphics from "../assets/PATH.svg";
+import graphicsmobile from "../assets/giraffepath.svg";
 import giraffe from "../assets/girrafe.svg";
 
 const GraphicsLayeredSection: React.FC = () => {
@@ -10,14 +11,14 @@ const GraphicsLayeredSection: React.FC = () => {
   return (
     <div className="relative md:z-80 bg-[#D8EEE7]">
       {/* Top Graphics Section */}
-      <DonationHeroSection className=" md:z-70 mb-[-160px] md:mb-[-280px]" />
+      <DonationHeroSection className=" md:z-70 mb-[-140px] md:mb-[-280px]" />
 
       {/* Giraffe Section - Sticky */}
       <section className="md:sticky top-0 w-full">
         <img
           src={giraffe}
           alt="Man feeding giraffe"
-          className="w-full md:h-full object-cover"
+          className="w-full h-[290px] md:h-full object-cover"
         />
       </section>
 
@@ -27,14 +28,21 @@ const GraphicsLayeredSection: React.FC = () => {
         <div className="absolute bottom-0 left-0 right-0 bg-white h-1/2"></div>
         {/* Graphics Background */}
         <div
-          className={`absolute inset-0 top-[-90px] md:top-0  md:w-full md:h-full bg-cover bg-center bg-no-repeat`}
+          className={`absolute inset-0 hidden md:block top-[-90px] md:top-0  md:w-full md:h-full bg-cover bg-center bg-no-repeat`}
           style={{
             backgroundImage: `url(${graphics})`,
           }}
         />
 
+          <div
+              className={`absolute inset-0 md:hidden block top-[-105px] left-[-20px]`}
+              style={{
+                  backgroundImage: `url(${graphicsmobile})`,
+              }}
+          />
+
         {/* Content Container */}
-        <div className="relative md:z-10  mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative md:z-10  mx-auto pt-10 md:pt-0 px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <h2 className="text-2xl md:text-5xl font-bold text-white poppins-bold text-center mb-[72px]">
             How can you help
