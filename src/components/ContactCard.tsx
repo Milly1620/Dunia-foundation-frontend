@@ -15,6 +15,45 @@ const ContactCard: React.FC<ContactCardProps> = ({
 }) => {
   const detailsArray = Array.isArray(details) ? details : [details];
 
+  // Helper function to check if a string is an email
+  const isEmail = (text: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(text.trim());
+  };
+
+  // Helper function to check if a string is a phone number
+  const isPhoneNumber = (text: string): boolean => {
+    const phoneRegex = /^\+?[\d\s\-()]+$/;
+    return phoneRegex.test(text.trim()) && text.trim().length > 5;
+  };
+
+  // Helper function to render contact detail
+  const renderContactDetail = (detail: string) => {
+    if (isEmail(detail)) {
+      return (
+        <a
+          href={`mailto:${detail}`}
+          className="text-primary hover:text-primary-dark transition-colors duration-200 underline"
+        >
+          {detail}
+        </a>
+      );
+    }
+
+    if (isPhoneNumber(detail)) {
+      return (
+        <a
+          href={`tel:${detail.replaceAll(/\s/g, '')}`}
+          className="text-primary hover:text-primary-dark transition-colors duration-200 underline"
+        >
+          {detail}
+        </a>
+      );
+    }
+
+    return detail;
+  };
+
   return (
     <div
       className={`w-full bg-white border border-border py-[55px] px-[24px] shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
@@ -32,8 +71,8 @@ const ContactCard: React.FC<ContactCardProps> = ({
           </h3>
           <div>
             {detailsArray.map((detail, index) => (
-              <p key={index} className="text-gray poppins-regular">
-                {detail}
+              <p key={`${title}-${detail}-${index}`} className="text-gray poppins-regular">
+                {renderContactDetail(detail)}
               </p>
             ))}
           </div>

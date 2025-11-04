@@ -13,8 +13,8 @@ const contactInfo = [
   },
   {
     icon: LocateIcon,
-    title: "Visit Us",
-    details: "East Legon Executive Fitness Club",
+    title: "Location",
+    details: "Nii Anyetei Kwao Street, Accra Ghana.",
   },
   {
     icon: Clock,

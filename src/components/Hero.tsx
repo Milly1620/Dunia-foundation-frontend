@@ -11,7 +11,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative overflow-x-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5 pt-[65px] md:pt-[72px] md:pb-[120px] flex justify-center items-center">
+    <div className="relative overflow-hidden bg-gradient-to-b from-[#F2F8F6] to-[#D8EEE7] p-5 pt-[65px] md:pt-[72px] md:pb-[120px] flex justify-center items-center">
       <div className="max-w-[1501px] md:px-5 flex flex-col md:flex-row justify-between items-center">
         <div className="block md:hidden mb-[61px] z-10">
           <img src={heroMini} alt="Hero" />
@@ -21,10 +21,8 @@ const Hero = () => {
             Creating Lasting Change in Communities
           </h1>
           <p className="poppins-regular lg:text-[18px] text-[16px] leading-[28.8px] text-gray mb-5 md:mb-6">
-            Dunia Impact Foundation empowers communities across Ghana and Africa
-            through comprehensive development programs in education, healthcare,
-            clean water access, and economic empowerment. "Sesa" means change in
-            Twi, and that's exactly what we're committed to creating.
+            Dunia means "World" Represents a global vision with local
+            impact—creating change that resonates across borders.
           </p>
           <div className="flex items-center md:space-x-4">
             <Button
@@ -50,7 +48,7 @@ const Hero = () => {
           <img src={heroImage} alt="Hero" />
         </div>
         <img src={line} alt="Line" className="absolute top-0 right-[-77px]" />
-        <img
+         <img
           src={pathright}
           alt="Path Right"
           className="absolute top-[22.5%] right-[-297px] md:top-[13%] lg:top-[31.5%] lg:right-[-197px] md:right-[-400px]"

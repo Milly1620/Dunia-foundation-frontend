@@ -24,12 +24,8 @@ function AboutPage() {
               Dunia Impact Foundation
             </h1>
             <p className="text-[18px] poppins-regular max-w-[826px] md:mx-auto leading-relaxed">
-              "Sesa" means change in Twi, Ghana's most widely spoken language.
-              Since our founding in 2018, we have been dedicated to creating
-              positive, lasting change in communities across Ghana and Africa.
-              We believe that sustainable development happens when communities
-              are empowered with the tools, knowledge, and resources they need
-              to thrive independently.ß
+              Dunia means “World” Represents a global vision with local
+              impact—creating change that resonates across borders.
             </p>
           </div>
         </div>
