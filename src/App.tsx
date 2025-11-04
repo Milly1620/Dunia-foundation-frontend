@@ -22,7 +22,7 @@ function App() {
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="donate" element={<DonatePage />} />
-          <Route path="donate/verify" element={<PaymentSuccessPage />} />
+          <Route path="donation/verify" element={<PaymentSuccessPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
