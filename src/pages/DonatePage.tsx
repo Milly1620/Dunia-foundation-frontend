@@ -18,7 +18,6 @@ function DonatePage() {
         title="Make a Difference Today"
         description="Your donation creates lasting change in communities across Africa. Every contribution, no matter the size, helps us empower communities through our seven pillars: education, healthcare, WASH projects, agriculture, women & youth empowerment, community development, and emergency"
         backgroundImage={bgImage}
-        stats={heroStats}
         paddingBottom="md:pb-[105px]"
       />
       <img
@@ -41,11 +40,5 @@ function DonatePage() {
     </div>
   );
 }
-
-const heroStats = [
-  { value: "50,000+", label: "Lives Impacted" },
-  { value: "200+", label: "Communities Served" },
-  { value: "15", label: "African Countries" },
-];
 
 export default DonatePage;

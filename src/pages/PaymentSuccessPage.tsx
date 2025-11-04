@@ -39,17 +39,17 @@ const PaymentSuccessPage: React.FC = () => {
           </div>
 
           {/* Main Message */}
-          <h1 className="text-2xl md:text-4xl lg:text-5xl poppins-bold text-main-black mb-4">
+          <h1 className="w-[236px] md:w-full poppins-bold lg:text-[48px] md:text-[32px] text-[24px] lg:leading-[57.6px] md:leading-[48px] leading-[30px] text-main-black mb-3">
             Payment Successful!
           </h1>
 
-          <p className="text-lg md:text-xl poppins-regular text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="poppins-regular lg:text-[18px] text-[16px] leading-[28.8px] text-gray mb-5 md:mb-6">
             Thank you for your generous donation! Your contribution will make a
             real difference in communities across Africa.
           </p>
 
           {/* Impact Message */}
-          <div className="bg-[#2A5F58] text-white rounded-lg p-6 mb-8">
+          <div className="bg-[#2A5F58] text-white p-6 mb-8">
             <h3 className="text-xl poppins-semibold mb-4 flex items-center justify-center gap-2">
               <Globe className="w-6 h-6" />
               Your Impact

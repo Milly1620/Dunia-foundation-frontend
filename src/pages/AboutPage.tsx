@@ -2,7 +2,6 @@ import CallToActionSection from "../components/CallToActionSection";
 import MissionVisionCard from "../components/MissionVisionCard";
 import ValuesSection from "../components/ValuesSection";
 import Path from "../assets/programspath.svg";
-import OurTeamSection from "../components/OurTeamSection";
 import aboutpagemobilepath from "../assets/aboutpagemobilepath.svg";
 
 function AboutPage() {
@@ -75,8 +74,6 @@ function AboutPage() {
           },
         ]}
       />
-
-      <OurTeamSection />
 
       <CallToActionSection
         title="Join Us in Creating Change"

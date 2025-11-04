@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import logo from "../assets/logomain.svg";
 import { X, Menu } from "lucide-react";
+
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -32,11 +33,11 @@ const Navbar: React.FC = () => {
       href: "/about",
       isActive: location.pathname === "/about",
     },
-    {
-      name: "Gallery",
-      href: "/gallery",
-      isActive: location.pathname === "/gallery",
-    },
+    // {
+    //   name: "Gallery",
+    //   href: "/gallery",
+    //   isActive: location.pathname === "/gallery",
+    // },
     {
       name: "Contact",
       href: "/contact",

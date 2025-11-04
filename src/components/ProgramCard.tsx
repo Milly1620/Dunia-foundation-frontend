@@ -2,7 +2,6 @@ interface Program {
   id: number;
   title: string;
   description: string;
-  stats: Array<{ label: string; value: string }>;
   image: string;
   imagePosition: string;
 }
@@ -50,18 +49,6 @@ function ProgramCard({ program }: Readonly<ProgramCardProps>) {
         <p className="text-base poppins-regular text-gray mb-4 leading-relaxed">
           {program.description}
         </p>
-
-        {/* Statistics */}
-        <div className="grid grid-cols-2 gap-6">
-          {program.stats.map((stat) => (
-            <div key={stat.label} className="text-left">
-              <p className="text-2xl inter-semibold text-primary mb-2">
-                {stat.value}
-              </p>
-              <p className="poppins-regular text-gray">{stat.label}</p>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Desktop Layout */}
@@ -81,18 +68,6 @@ function ProgramCard({ program }: Readonly<ProgramCardProps>) {
         <p className="text-[18px] poppins-regular text-gray mb-6 leading-relaxed">
           {program.description}
         </p>
-
-        {/* Statistics */}
-        <div className="grid grid-cols-4 gap-6">
-          {program.stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-2xl inter-semibold text-primary mb-2">
-                {stat.value}
-              </p>
-              <p className="poppins-regular text-gray">{stat.label}</p>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Desktop Image */}

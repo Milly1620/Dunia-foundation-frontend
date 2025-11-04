@@ -3,7 +3,6 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ProgramsPage from "./pages/ProgramsPage";
-import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import DonatePage from "./pages/DonatePage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
@@ -19,7 +18,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="programs" element={<ProgramsPage />} />
-          <Route path="gallery" element={<GalleryPage />} />
+          {/*<Route path="gallery" element={<GalleryPage />} />*/}
           <Route path="contact" element={<ContactPage />} />
           <Route path="donate" element={<DonatePage />} />
           <Route path="donation/verify" element={<PaymentSuccessPage />} />

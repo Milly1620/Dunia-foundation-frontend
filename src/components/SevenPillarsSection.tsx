@@ -37,7 +37,6 @@ const SevenPillarsSection: React.FC = () => {
               key={pillar.title}
               title={pillar.title}
               description={pillar.description}
-              metric={pillar.metric}
               alt={pillar.alt}
             />
           ))}
@@ -62,7 +61,6 @@ const pillars = [
     title: "Education",
     description:
       "Building schools, training teachers, and providing scholarships to ensure every child has access to quality education.",
-    metric: "500+ Students supported",
     alt: "Child writing on blackboard",
     placeholderColor: "from-blue-400 to-blue-600",
   },
@@ -71,7 +69,6 @@ const pillars = [
     title: "Health care",
     description:
       "Establishing clinics, training healthcare workers, and providing medical supplies to underserved communities.",
-    metric: "25+ Clinics built",
     alt: "Medical professional holding patient's hand",
     placeholderColor: "from-green-400 to-green-600",
   },
@@ -80,7 +77,6 @@ const pillars = [
     title: "Agriculture",
     description:
       "Teaching sustainable farming practices and providing resources to improve food security and income.",
-    metric: "1000+ Farmers trained",
     alt: "Hands pouring seeds into bag",
     placeholderColor: "from-yellow-400 to-yellow-600",
   },
@@ -89,7 +85,6 @@ const pillars = [
     title: "Clean water",
     description:
       "Building boreholes and water systems for communities without clean water access.",
-    metric: "300+ Boreholes built",
     alt: "Water flowing from pipe",
     placeholderColor: "from-cyan-400 to-cyan-600",
   },

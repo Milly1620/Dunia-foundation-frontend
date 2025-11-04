@@ -243,8 +243,8 @@ const DonationForm: React.FC = () => {
                   name={field.name}
                   value={field.value}
                   onChange={field.onChange}
-                  placeholder="Enter custom amount"
-                  prefix="$"
+                  placeholder="GHS Enter custom amount"
+                  // prefix="GHS"
                 />
               )}
             />
@@ -428,12 +428,12 @@ const donationOptions = [
 ];
 
 const amountCards = [
-  { amount: "$25", description: "Educational materials" },
-  { amount: "$50", description: "Clean water access" },
-  { amount: "$100", description: "Healthcare support" },
-  { amount: "$250", description: "Skill Development" },
-  { amount: "$500", description: "Infrastructure Development" },
-  { amount: "$1000", description: "Clean water access" },
+  { amount: "GHS 50", description: "Educational materials" },
+  { amount: "GHS 50", description: "Clean water access" },
+  { amount: "GHS 100", description: "Healthcare support" },
+  { amount: "GHS 250", description: "Skill Development" },
+  { amount: "GHS 500", description: "Infrastructure Development" },
+  { amount: "GHS 1000", description: "Agriculture Aid" }
 ];
 
 

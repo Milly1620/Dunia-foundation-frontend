@@ -4,7 +4,6 @@ interface PillarCardProps {
   image?: string;
   title: string;
   description: string;
-  metric?: string;
   alt?: string;
 }
 
@@ -12,7 +11,6 @@ const PillarCard: React.FC<PillarCardProps> = ({
   image,
   title,
   description,
-  metric = "",
   alt = "",
 }) => {
   return (
@@ -37,13 +35,6 @@ const PillarCard: React.FC<PillarCardProps> = ({
         <p className="text-sm md:text-base mb-4 poppins-regular leading-relaxed line-clamp-3">
           {description}
         </p>
-
-        {/* Metric */}
-        {metric && (
-          <div className="text-[12px] md:text-base poppins-semibold">
-            {metric}
-          </div>
-        )}
       </div>
     </div>
   );
