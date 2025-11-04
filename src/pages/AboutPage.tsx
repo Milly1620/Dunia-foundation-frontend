@@ -25,7 +25,10 @@ function AboutPage() {
             </h1>
             <p className="text-[18px] poppins-regular max-w-[826px] md:mx-auto leading-relaxed">
               Dunia means “World” Represents a global vision with local
-              impact—creating change that resonates across borders.
+              impact—creating change that resonates across borders. We believe
+              that sustainable development happens when communities are
+              empowered with the tools, knowledge, and resources they need to
+              thrive independently.ß
             </p>
           </div>
         </div>

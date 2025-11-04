@@ -21,8 +21,11 @@ const Hero = () => {
             Creating Lasting Change in Communities
           </h1>
           <p className="poppins-regular lg:text-[18px] text-[16px] leading-[28.8px] text-gray mb-5 md:mb-6">
-            Dunia means "World" Represents a global vision with local
-            impact—creating change that resonates across borders.
+            Dunia Impact Foundation empowers communities across Ghana and Africa
+            through comprehensive development programs in education, healthcare,
+            clean water access, and economic empowerment. Dunia means "World"
+            Represents a global vision with local impact—creating change that
+            resonates across borders.
           </p>
           <div className="flex items-center md:space-x-4">
             <Button
@@ -48,7 +51,7 @@ const Hero = () => {
           <img src={heroImage} alt="Hero" />
         </div>
         <img src={line} alt="Line" className="absolute top-0 right-[-77px]" />
-         <img
+        <img
           src={pathright}
           alt="Path Right"
           className="absolute top-[22.5%] right-[-297px] md:top-[13%] lg:top-[31.5%] lg:right-[-197px] md:right-[-400px]"

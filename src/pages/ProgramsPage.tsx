@@ -12,7 +12,6 @@ import CallToActionSection from "../components/CallToActionSection";
 import line from "../assets/donateline.svg";
 import mobileline from "../assets/programheroline.svg";
 
-
 function ProgramsPage() {
   return (
     <div>
@@ -26,8 +25,11 @@ function ProgramsPage() {
             Creating Lasting Change in Communities
           </h1>
           <p className="text-base md:text-[18px] poppins-regular text-gray max-w-[906px] mx-auto leading-relaxed">
-            Dunia means “World” Represents a global vision with local
-            impact—creating change that resonates across borders.
+            Dunia Impact Foundation empowers communities across Ghana and Africa
+            through comprehensive development programs in education, healthcare,
+            clean water access, and economic empowerment. Dunia means “World”
+            Represents a global vision with local impact—creating change that
+            resonates across borders.
           </p>
         </div>
         <img
