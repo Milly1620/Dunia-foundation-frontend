@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import DonationHeroSection from "./DonationHeroSection";
-import graphics from "../assets/Path.svg";
+import graphics from "../assets/PATH.svg";
 import giraffe from "../assets/girrafe.svg";
 
 const GraphicsLayeredSection: React.FC = () => {
