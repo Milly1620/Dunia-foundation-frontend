@@ -56,7 +56,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
 
   return (
     <div
-      className={`w-full bg-white border border-border py-[55px] px-[24px] shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
+      className={`w-full bg-white border border-border py-[55px] px-[24px] shadow-sm hover:shadow-md transition-shadow duration-200 mb-10 last:mb-0 lg:mb-0 ${className}`}
     >
       <div className="flex items-center space-x-6">
         {/* Icon */}

@@ -12,7 +12,7 @@ const HomeDonateSection = () => {
 
   return (
     <div
-      className={`relative md:py-[185px] py-[75px] px-6 md:px-[185px] md:sticky z-70 bg-gradient-to-b from-[#D8EEE7] to-[#F2F8F6]`}
+      className={`relative md:py-[185px] py-[75px] px-6 md:px-[185px] overflow-hidden md:sticky z-70 bg-gradient-to-b from-[#D8EEE7] to-[#F2F8F6]`}
     >
       <div className="md:max-w-[772px] max-w-[342px] mx-auto text-center text-black">
         <h2 className={`md:text-[40px] text-[24px] poppins-semibold mb-2 `}>
