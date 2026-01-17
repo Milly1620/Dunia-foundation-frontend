@@ -2,7 +2,6 @@ import CallToActionSection from "../components/CallToActionSection";
 import MissionVisionCard from "../components/MissionVisionCard";
 import ValuesSection from "../components/ValuesSection";
 import Path from "../assets/programspath.svg";
-import aboutpagemobilepath from "../assets/aboutpagemobilepath.svg";
 
 function AboutPage() {
   return (
@@ -12,13 +11,8 @@ function AboutPage() {
           About
         </h1>
         <div className="relative w-full">
-          <img src={Path} alt="Separator" className="hidden md:block w-full" />
-          <img
-            src={aboutpagemobilepath}
-            alt="Separator"
-            className="block md:hidden w-full"
-          />
-          <div className="hidden md:block max-w-4xl mx-auto text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src={Path} alt="Separator" className=" w-full" />
+          <div className="max-w-4xl mx-auto md:text-white text-center absolute top-1/2 md:left-1/2 md:-translate-x-1/2 -translate-y-1/2">
             <h1 className="md:text-5xl text-2xl poppins-bold mb-6">
               Dunia Impact Foundation
             </h1>
@@ -27,12 +21,12 @@ function AboutPage() {
               impact—creating change that resonates across borders. We believe
               that sustainable development happens when communities are
               empowered with the tools, knowledge, and resources they need to
-              thrive independently.ß
+              thrive independently.
             </p>
           </div>
         </div>
 
-        <div className="relative md:pt-[61.11px] pb-[80px] md:pb-[120.89px] px-6 mt-[-437px] md:mt-0 z-10">
+        <div className="relative md:pt-[61.11px] pb-[80px] md:pb-[120.89px] mt-[50px] px-6 z-10">
           <div className="max-w-[1760px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 justify-items-center md:h-[466px] h-full">
               <MissionVisionCard
