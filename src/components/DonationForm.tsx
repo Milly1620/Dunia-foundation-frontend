@@ -99,9 +99,10 @@ const DonationForm: React.FC = () => {
 
     try {
       // Determine the final amount (either selected preset or custom)
+      const selectedCard = amountCards.find(card => card.id === data.selectedAmount);
       const finalAmount = data.customAmount ?
         Number.parseFloat(data.customAmount) :
-        Number.parseFloat(data.selectedAmount.replace('$', ''));
+        (selectedCard ? selectedCard.value : Number.NaN);
 
       // Use the selected program ID directly, or default to first available program
       let programId: number;
@@ -221,11 +222,11 @@ const DonationForm: React.FC = () => {
           <div className="grid grid-cols-2 lg:grid-cols-3 md:gap-6 gap-4">
             {amountCards.map((card) => (
               <DonationAmountCard
-                key={card.amount}
+                key={card.id}
                 amount={card.amount}
                 description={card.description}
-                isSelected={watchedValues.selectedAmount === card.amount}
-                onClick={() => handleAmountSelect(card.amount)}
+                isSelected={watchedValues.selectedAmount === card.id}
+                onClick={() => handleAmountSelect(card.id)}
               />
             ))}
           </div>
@@ -274,13 +275,23 @@ const DonationForm: React.FC = () => {
                 label="Anonymous donations"
                 name={field.name}
                 checked={field.value}
-                onChange={field.onChange}
+                onChange={(e) => {
+                  field.onChange(e);
+                  // Clear donor information when donating anonymously
+                  if (e.target.checked) {
+                    setValue("firstName", "");
+                    setValue("lastName", "");
+                    setValue("email", "");
+                    setValue("phone", "");
+                  }
+                }}
               />
             )}
           />
         </div>
 
-        {/* Donor Information Section */}
+        {/* Donor Information Section - hidden for anonymous donations */}
+        {!watchedValues.isAnonymous && (
         <div className="space-y-6">
           <h2 className="text-[24px] poppins-semibold text-primary border-b border-[#D4D4D8] pb-2">
             Donor Information
@@ -290,7 +301,7 @@ const DonationForm: React.FC = () => {
             <Controller
               name="firstName"
               control={control}
-              rules={{ required: "First name is required" }}
+              rules={{ required: watchedValues.isAnonymous ? false : "First name is required" }}
               render={({ field }) => (
                 <InputField
                   label="First name"
@@ -307,7 +318,7 @@ const DonationForm: React.FC = () => {
             <Controller
               name="lastName"
               control={control}
-              rules={{ required: "Last name is required" }}
+              rules={{ required: watchedValues.isAnonymous ? false : "Last name is required" }}
               render={({ field }) => (
                 <InputField
                   label="Last name"
@@ -325,8 +336,8 @@ const DonationForm: React.FC = () => {
               name="email"
               control={control}
               rules={{
-                required: "Email is required",
-                pattern: {
+                required: watchedValues.isAnonymous ? false : "Email is required",
+                pattern: watchedValues.isAnonymous ? undefined : {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: "Invalid email address"
                 }
@@ -395,6 +406,7 @@ const DonationForm: React.FC = () => {
             </div>
           </div>
         </div>
+        )}
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-end">
@@ -428,12 +440,12 @@ const donationOptions = [
 ];
 
 const amountCards = [
-  { amount: "GHS 50", description: "Educational materials" },
-  { amount: "GHS 50", description: "Clean water access" },
-  { amount: "GHS 100", description: "Healthcare support" },
-  { amount: "GHS 250", description: "Skill Development" },
-  { amount: "GHS 500", description: "Infrastructure Development" },
-  { amount: "GHS 1000", description: "Agriculture Aid" }
+  { id: "edu-50", amount: "GHS 50", value: 50, description: "Educational materials" },
+  { id: "water-50", amount: "GHS 50", value: 50, description: "Clean water access" },
+  { id: "health-100", amount: "GHS 100", value: 100, description: "Healthcare support" },
+  { id: "skill-250", amount: "GHS 250", value: 250, description: "Skill Development" },
+  { id: "infra-500", amount: "GHS 500", value: 500, description: "Infrastructure Development" },
+  { id: "agri-1000", amount: "GHS 1000", value: 1000, description: "Agriculture Aid" }
 ];
 
 
