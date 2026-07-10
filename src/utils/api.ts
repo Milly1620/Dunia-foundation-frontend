@@ -31,12 +31,12 @@ export interface DonationPayload {
   amount: number;
   country: string;
   donation_type: "one-time" | "monthly";
-  email: string;
-  first_name: string;
+  email?: string;
+  first_name?: string;
   is_anonymous: boolean;
-  last_name: string;
+  last_name?: string;
   notes?: string;
-  phone_number: string;
+  phone_number?: string;
   program_id: number;
 }
 

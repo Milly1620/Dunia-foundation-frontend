@@ -118,14 +118,19 @@ const DonationForm: React.FC = () => {
         amount: finalAmount,
         country: data.country,
         donation_type: data.donationType,
-        email: data.email,
-        first_name: data.firstName,
         is_anonymous: data.isAnonymous,
-        last_name: data.lastName,
         notes: data.notes || undefined,
-        phone_number: data.phone,
         program_id: programId,
       };
+
+      // Only include donor information for non-anonymous donations so the
+      // backend doesn't reject empty first_name/last_name/email fields
+      if (!data.isAnonymous) {
+        payload.email = data.email;
+        payload.first_name = data.firstName;
+        payload.last_name = data.lastName;
+        payload.phone_number = data.phone;
+      }
 
       // Initialize payment with backend
       const response = await donationAPI.create(payload);
